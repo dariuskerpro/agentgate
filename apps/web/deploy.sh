@@ -6,7 +6,8 @@ set -euo pipefail
 
 REMOTE="admin@147.182.196.245"
 SSH_KEY="$HOME/.ssh/id_ed25519"
-WEBROOT="/var/www/vhosts/text2ai.com/httpdocs"
+# Plesk serves agentgate.online from this server path
+WEBROOT="/var/www/vhosts/agentgate.online/httpdocs"
 LOCAL_OUT="$(dirname "$0")/out"
 
 if [ ! -d "$LOCAL_OUT" ]; then
@@ -53,4 +54,4 @@ ssh -i "$SSH_KEY" "$REMOTE" "sudo bash -c '
   rm -f /tmp/web-deploy.tar.gz
 '"
 
-echo "✅ Deployed to https://text2ai.com"
+echo "✅ Deployed to https://agentgate.online"
