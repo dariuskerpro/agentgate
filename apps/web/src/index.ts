@@ -1,7 +1,12 @@
 // Web app — main exports
 export { fetchEndpointCount } from "./lib/api.js";
 export { Hero } from "./components/hero.js";
+export { Architecture } from "./components/architecture.js";
+export { Playground } from "./components/playground.js";
+export { Marketplace } from "./components/marketplace.js";
 export { HowItWorks } from "./components/how-it-works.js";
-export { ForSellers } from "./components/for-sellers.js";
-export { ForAgents } from "./components/for-agents.js";
+export { ForBuilders } from "./components/for-builders.js";
+export { Quickstart } from "./components/quickstart.js";
+export { Pricing } from "./components/pricing.js";
+export { CTA } from "./components/cta.js";
 export { Footer } from "./components/footer.js";

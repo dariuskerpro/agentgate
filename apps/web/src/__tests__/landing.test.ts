@@ -53,16 +53,46 @@ describe("Landing page components", () => {
     expect(typeof mod.HowItWorks).toBe("function");
   });
 
-  it("ForSellers component exports correctly", async () => {
-    const mod = await import("../components/for-sellers.js");
-    expect(mod.ForSellers).toBeDefined();
-    expect(typeof mod.ForSellers).toBe("function");
+  it("Architecture component exports correctly", async () => {
+    const mod = await import("../components/architecture.js");
+    expect(mod.Architecture).toBeDefined();
+    expect(typeof mod.Architecture).toBe("function");
   });
 
-  it("ForAgents component exports correctly", async () => {
-    const mod = await import("../components/for-agents.js");
-    expect(mod.ForAgents).toBeDefined();
-    expect(typeof mod.ForAgents).toBe("function");
+  it("Playground component exports correctly", async () => {
+    const mod = await import("../components/playground.js");
+    expect(mod.Playground).toBeDefined();
+    expect(typeof mod.Playground).toBe("function");
+  });
+
+  it("Marketplace component exports correctly", async () => {
+    const mod = await import("../components/marketplace.js");
+    expect(mod.Marketplace).toBeDefined();
+    expect(typeof mod.Marketplace).toBe("function");
+  });
+
+  it("ForBuilders component exports correctly", async () => {
+    const mod = await import("../components/for-builders.js");
+    expect(mod.ForBuilders).toBeDefined();
+    expect(typeof mod.ForBuilders).toBe("function");
+  });
+
+  it("Quickstart component exports correctly", async () => {
+    const mod = await import("../components/quickstart.js");
+    expect(mod.Quickstart).toBeDefined();
+    expect(typeof mod.Quickstart).toBe("function");
+  });
+
+  it("Pricing component exports correctly", async () => {
+    const mod = await import("../components/pricing.js");
+    expect(mod.Pricing).toBeDefined();
+    expect(typeof mod.Pricing).toBe("function");
+  });
+
+  it("CTA component exports correctly", async () => {
+    const mod = await import("../components/cta.js");
+    expect(mod.CTA).toBeDefined();
+    expect(typeof mod.CTA).toBe("function");
   });
 
   it("Footer component exports correctly", async () => {

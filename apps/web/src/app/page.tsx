@@ -1,18 +1,28 @@
 import React from "react";
-import { Hero } from "../components/hero.js";
-import { HowItWorks } from "../components/how-it-works.js";
-import { ForSellers } from "../components/for-sellers.js";
-import { ForAgents } from "../components/for-agents.js";
-import { Footer } from "../components/footer.js";
+import { Hero } from "../components/hero";
+import { Architecture } from "../components/architecture";
+import { Playground } from "../components/playground";
+import { Marketplace } from "../components/marketplace";
+import { HowItWorks } from "../components/how-it-works";
+import { ForBuilders } from "../components/for-builders";
+import { Quickstart } from "../components/quickstart";
+import { Pricing } from "../components/pricing";
+import { CTA } from "../components/cta";
+import { Footer } from "../components/footer";
 
 export default function LandingPage() {
   return (
-    <>
+    <main className="grid-bg">
       <Hero />
+      <Architecture />
+      <Playground />
+      <Marketplace />
       <HowItWorks />
-      <ForSellers />
-      <ForAgents />
+      <ForBuilders />
+      <Quickstart />
+      <Pricing />
+      <CTA />
       <Footer />
-    </>
+    </main>
   );
 }
