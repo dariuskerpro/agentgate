@@ -2,6 +2,27 @@
 
 ## [Unreleased]
 
+### AG-006: Marketplace API — Core Endpoints
+- TDD: 31 tests written first (red), then implementation (green)
+- Hono app assembly with route groups: sellers, endpoints, discover, events
+- **Seller Management** (API key auth): POST /v1/sellers/register, GET /v1/sellers/me
+- **Endpoint CRUD** (API key auth): POST/PUT/DELETE /v1/endpoints, GET /v1/endpoints/mine
+- **Discovery** (public, no auth): GET /v1/discover with category/keyword/sort/pagination, GET /v1/discover/:id, GET /v1/discover/categories
+- **Analytics Ingestion** (API key auth): POST /v1/events/transaction
+- Auth middleware: validates `Authorization: Bearer ag_xxxxx` header, resolves seller
+- Repository pattern: interfaces in types.ts, in-memory mocks for testing
+- Owner-only enforcement on PUT/DELETE endpoints (403 for non-owners)
+- Soft-delete on endpoints (sets active=false, excluded from discovery)
+- Pagination support (limit/offset) with total count on discovery
+
+### AG-007: Seller Registration Flow
+- Wallet-based registration: POST /v1/sellers/register with wallet_address
+- API key generation: `ag_` + crypto.randomUUID().replace(/-/g, '') = 32 hex chars
+- Idempotent: duplicate wallet address returns existing seller + API key (200 vs 201)
+- Validation: missing wallet_address returns 400
+- GET /v1/sellers/me returns profile (id, wallet_address, display_name, verified)
+- SIWE signature verification deferred to Phase 1 integration (accepts wallet address only for now)
+
 ### AG-008: CLI `npx agentgate init`
 - TDD: 17 tests written first (red), then implementation (green)
 - `detectFramework()` — auto-detects Express, Next.js, Hono from package.json deps
