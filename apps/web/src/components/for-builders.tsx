@@ -78,7 +78,7 @@ const result = await gate.call({
 
 console.log(result.output);
 // => "こんにちは世界"
-// Payment: 0.002 USDC settled on Base`}
+// Payment: 0.002 USDC settled on Base or Solana`}
                 </code>
               </pre>
             </div>

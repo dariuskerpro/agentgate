@@ -26,8 +26,8 @@ const steps = [
     num: "4",
     icon: "💸",
     title: "Settle",
-    desc: "USDC payments on Base. Instant settlement, no intermediary, no invoices. Peer-to-peer.",
-    code: "0.002 USDC → Base",
+    desc: "USDC payments on Base & Solana. Instant settlement, no intermediary, no invoices. Peer-to-peer.",
+    code: "0.002 USDC → Base | Solana",
   },
 ];
 

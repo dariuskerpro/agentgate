@@ -211,7 +211,7 @@ app.listen(3000);`}</code>
               <li>✅ Your endpoints appear in the marketplace</li>
               <li>✅ Agents discover them via the Discovery API</li>
               <li>✅ x402 payment verification happens automatically</li>
-              <li>✅ USDC settles to your wallet on Base</li>
+              <li>✅ USDC settles to your wallet on Base or Solana</li>
             </ul>
           </div>
 

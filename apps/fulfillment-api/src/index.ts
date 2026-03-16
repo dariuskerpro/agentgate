@@ -2,6 +2,7 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { paymentMiddlewareFromConfig, type SchemeRegistration } from "@x402/hono";
 import { ExactEvmScheme } from "@x402/evm/exact/server";
+import { ExactSvmScheme } from "@x402/svm/exact/server";
 import { HTTPFacilitatorClient } from "@x402/core/server";
 import { handleCodeReview } from "./handlers/code-review.js";
 import { handleTranscriptToPrd } from "./handlers/transcript-to-prd.js";
@@ -89,12 +90,14 @@ if (USE_PAYMENTS && (SELLER_WALLET || SELLER_WALLET_SOL)) {
     },
   };
 
-  // Register scheme servers
+  // Register scheme servers for both chains
   const schemes: SchemeRegistration[] = [];
   if (SELLER_WALLET) {
     schemes.push({ network: EVM_NETWORK, server: new ExactEvmScheme() });
   }
-  // Note: SVM scheme server is handled by the facilitator, not locally
+  if (SELLER_WALLET_SOL) {
+    schemes.push({ network: SOL_NETWORK, server: new ExactSvmScheme() });
+  }
 
   // Use our self-hosted facilitator
   const facilitatorClient = new HTTPFacilitatorClient({ url: FACILITATOR_URL });

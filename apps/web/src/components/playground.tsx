@@ -91,7 +91,7 @@ export function Playground() {
   "payment": {
     "amount": "0.002",
     "currency": "USDC",
-    "chain": "Base",
+    "chain": "Base or Solana",
     "tx": "0x8a3f...c712"
   },
   "latency_ms": 118

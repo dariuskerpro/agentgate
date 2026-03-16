@@ -61,7 +61,7 @@ export function Architecture() {
                   <span>Payment</span>
                 </div>
               </div>
-              <div className="arch-gate-protocol">x402 Protocol · USDC on Base</div>
+              <div className="arch-gate-protocol">x402 Protocol · USDC on Base &amp; Solana</div>
             </div>
           </div>
 

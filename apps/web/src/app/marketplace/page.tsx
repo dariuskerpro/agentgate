@@ -146,7 +146,7 @@ export default async function MarketplacePage() {
               style={{ textAlign: "center", marginBottom: "2rem" }}
             >
               {totalEndpoints} endpoints across {totalCategories} categories.
-              Pay per call with USDC on Base.
+              Pay per call with USDC on Base &amp; Solana.
             </p>
 
             <div
@@ -242,7 +242,7 @@ export default async function MarketplacePage() {
                       color: "var(--color-text-dim)",
                     }}
                   >
-                    USDC on Base
+                    USDC · Base & Solana
                   </span>
                 </div>
               </div>
