@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+### AG-011: Endpoint Health Monitoring
+- TDD: 12 tests written first (red), then implementation (green)
+- `probeEndpoint(url)` — HEAD request with 5-second AbortController timeout, no x402 headers
+- `fetchActiveEndpoints()` — retrieves only active endpoints via discover query
+- `recordHealthCheck()` — stores probe results (status_code, latency_ms, is_up) in health repository
+- `computeUptimeScore(endpointId)` — ratio of up checks to total (0.0–1.0)
+- `shouldAutoDeactivate(endpointId)` — true when continuously down > 24 hours
+- `runHealthCheck()` — orchestrator: fetch → probe → record → score → auto-deactivate
+- HealthRepository interface + MockHealthRepository for testing
+- Mock fetch injection in probe for deterministic tests (no real HTTP)
+
 ### AG-006: Marketplace API — Core Endpoints
 - TDD: 31 tests written first (red), then implementation (green)
 - Hono app assembly with route groups: sellers, endpoints, discover, events
