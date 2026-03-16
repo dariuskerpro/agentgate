@@ -4,6 +4,12 @@
 
 const DEFAULT_BASE_URL = 'https://api.text2ai.com';
 
+interface RawSellerResponse {
+  id: string;
+  api_key: string;
+  wallet_address: string;
+}
+
 export interface RegisterSellerResponse {
   id: string;
   apiKey: string;
@@ -36,14 +42,15 @@ export class MarketplaceClient {
     const res = await fetch(`${this.baseUrl}/v1/sellers/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ wallet }),
+      body: JSON.stringify({ wallet_address: wallet }),
     });
 
     if (!res.ok) {
       throw new Error(`Failed to register seller: ${res.statusText}`);
     }
 
-    return res.json() as Promise<RegisterSellerResponse>;
+    const raw = (await res.json()) as RawSellerResponse;
+    return { id: raw.id, apiKey: raw.api_key, wallet: raw.wallet_address };
   }
 
   async registerEndpoint(endpoint: RegisterEndpointInput): Promise<{ id: string }> {
