@@ -1,0 +1,30 @@
+{
+  "name": "@agent-gate/facilitator",
+  "version": "0.0.1",
+  "description": "Self-hosted x402 facilitator for Base mainnet and Sepolia",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "lint": "biome check src/"
+  },
+  "dependencies": {
+    "@scure/base": "^1.2.0",
+    "@solana/kit": "^2.1.0",
+    "@x402/core": "^2.7.0",
+    "@x402/evm": "^2.7.0",
+    "@x402/svm": "^2.7.0",
+    "dotenv": "^16.4.0",
+    "express": "^5.1.0",
+    "viem": "^2.31.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  }
+}
