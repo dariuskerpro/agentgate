@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import { Navbar } from "../components/navbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -55,7 +56,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
