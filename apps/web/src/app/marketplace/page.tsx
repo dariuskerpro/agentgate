@@ -29,6 +29,9 @@ const LIVE_ENDPOINTS = new Set([
   "/v1/phone-validate",
   "/v1/crypto-price",
   "/v1/ip-geolocate",
+  "/v1/transcribe",
+  "/v1/scrape-enrich",
+  "/v1/pdf-extract",
 ]);
 
 async function getEndpoints(): Promise<Endpoint[]> {

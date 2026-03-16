@@ -5,43 +5,67 @@ const agents = [
     name: "Audio → Transcript",
     description: "Audio/video → accurate transcript with speaker diarization and timestamps.",
     price: "$0.015",
-    uptime: 99.9,
     category: "Audio",
+  },
+  {
+    name: "Code Review",
+    description: "Source code → detailed review with suggestions, bugs, and improvements.",
+    price: "$0.05",
+    category: "Code",
   },
   {
     name: "Transcript → PRD",
     description: "Meeting recording → structured PRD with user stories and acceptance criteria.",
     price: "$0.035",
-    uptime: 99.8,
     category: "Documents",
   },
   {
-    name: "PRD → App Scaffold",
-    description: "PRD document → full project scaffold with tests, CI, and Docker.",
-    price: "$0.10",
-    uptime: 99.7,
-    category: "Code",
-  },
-  {
-    name: "Lead Recon",
-    description: "Business name → full recon: website, reviews, tech stack, decision makers.",
-    price: "$0.03",
-    uptime: 99.8,
+    name: "Scrape & Enrich",
+    description: "URL → structured data extraction with custom schema mapping.",
+    price: "$0.012",
     category: "Data",
   },
   {
-    name: "Contract Review",
-    description: "Legal contract → risk analysis, key terms, and plain-English summary.",
-    price: "$0.075",
-    uptime: 99.6,
+    name: "PDF Extract",
+    description: "PDF file → structured text, tables, and metadata extraction.",
+    price: "$0.02",
     category: "Documents",
   },
   {
-    name: "Video Highlights",
-    description: "Long video → key moments, highlight reel, and chapter markers with thumbnails.",
-    price: "$0.06",
-    uptime: 99.9,
-    category: "Vision",
+    name: "Email Validate",
+    description: "Email address → deliverability check, MX validation, and risk score.",
+    price: "$0.0005",
+    category: "Data",
+  },
+  {
+    name: "DNS Lookup",
+    description: "Domain → DNS records (A, MX, NS, TXT) with full resolution.",
+    price: "$0.0003",
+    category: "Data",
+  },
+  {
+    name: "URL Metadata",
+    description: "URL → title, description, Open Graph, and social metadata.",
+    price: "$0.0005",
+    category: "Data",
+  },
+  {
+    name: "Phone Validate",
+    description: "Phone number → carrier, type, country, and validity check.",
+    price: "$0.0003",
+    category: "Data",
+  },
+  {
+    name: "Crypto Price",
+    description: "Coin IDs → real-time prices, market cap, and 24h change.",
+    price: "$0.0001",
+    category: "Data",
+  },
+  {
+    name: "IP Geolocate",
+    description: "IP address → city, country, ISP, and coordinates.",
+    price: "$0.0002",
+    category: "Data",
   },
 ];
 
@@ -50,10 +74,10 @@ export function Marketplace() {
     <section className="marketplace">
       <div className="container">
         <h2 className="section-title" style={{ textAlign: "center" }}>
-          Agent <span className="gradient-text">Marketplace</span>
+          Live <span className="gradient-text">Endpoints</span>
         </h2>
         <p className="section-subtitle" style={{ textAlign: "center" }}>
-          Agents that do real work — chain them together for pipelines no single model can handle.
+          11 endpoints live today — all accepting USDC payments via x402.
         </p>
 
         <div className="marketplace-grid">
@@ -61,7 +85,15 @@ export function Marketplace() {
             <div key={agent.name} className="marketplace-card">
               <div className="marketplace-card-header">
                 <span className="marketplace-card-category">{agent.category}</span>
-                <span className="marketplace-card-uptime">{agent.uptime}% uptime</span>
+                <span style={{
+                  color: "#22c55e",
+                  background: "rgba(34, 197, 94, 0.15)",
+                  padding: "0.2rem 0.5rem",
+                  borderRadius: "4px",
+                  fontSize: "0.6875rem",
+                  fontFamily: "var(--font-mono)",
+                  fontWeight: 600,
+                }}>● Live</span>
               </div>
               <h3 className="marketplace-card-name">{agent.name}</h3>
               <p className="marketplace-card-desc">{agent.description}</p>

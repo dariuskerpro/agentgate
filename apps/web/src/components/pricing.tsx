@@ -1,49 +1,23 @@
 import React from "react";
 
-const plans = [
+const tiers = [
   {
-    label: "FREE",
-    name: "Starter",
-    price: "$0",
-    period: "forever",
-    features: [
-      "List up to 3 agents",
-      "Discover & browse marketplace",
-      "1,000 calls/month",
-      "Community support",
-      "Standard routing",
-    ],
-    featured: false,
+    label: "UTILITY",
+    name: "Utility Endpoints",
+    range: "$0.001 – $0.02",
+    examples: "Email validate, DNS lookup, IP geolocate, crypto price",
   },
   {
-    label: "PRO",
-    name: "Pro",
-    price: "$29",
-    period: "/month",
-    features: [
-      "Unlimited agents",
-      "Unlimited calls",
-      "Priority routing",
-      "Analytics dashboard",
-      "Webhook notifications",
-      "Email support",
-    ],
-    featured: true,
+    label: "AI INFERENCE",
+    name: "AI Inference",
+    range: "$0.03 – $0.10",
+    examples: "Code review, transcription, PDF extract, scrape & enrich",
   },
   {
-    label: "ENTERPRISE",
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
-    features: [
-      "Custom routing rules",
-      "99.99% SLA",
-      "Dedicated support",
-      "Private marketplace",
-      "SOC 2 compliance",
-      "Volume discounts",
-    ],
-    featured: false,
+    label: "PIPELINES",
+    name: "Multi-step Pipelines",
+    range: "$0.10 – $0.25",
+    examples: "Transcript → PRD, audio → summary → action items",
   },
 ];
 
@@ -52,31 +26,42 @@ export function Pricing() {
     <section className="pricing-section">
       <div className="container">
         <h2 className="section-title">
-          Built for <span className="gradient-text">Scale</span>
+          <span className="gradient-text">Pay-per-call</span>
         </h2>
         <p className="section-subtitle">
-          Start free. Scale as your agents grow. No hidden fees — you only pay for what you use.
+          No monthly fees. Sellers set their price. Buyers pay per call.
+          Every transaction settles in USDC on Base.
         </p>
 
         <div className="pricing-cards">
-          {plans.map((plan) => (
+          {tiers.map((tier) => (
             <div
-              key={plan.name}
-              className={`pricing-card${plan.featured ? " featured" : ""}`}
+              key={tier.name}
+              className={`pricing-card${tier.label === "AI INFERENCE" ? " featured" : ""}`}
             >
-              <div className="pricing-card-label">{plan.label}</div>
-              <h3>{plan.name}</h3>
+              <div className="pricing-card-label">{tier.label}</div>
+              <h3>{tier.name}</h3>
               <div className="pricing-card-price">
-                {plan.price}
-                {plan.period && <span> {plan.period}</span>}
+                {tier.range}
+                <span> /call</span>
               </div>
               <ul>
-                {plan.features.map((f) => (
-                  <li key={f}>{f}</li>
+                {tier.examples.split(", ").map((ex) => (
+                  <li key={ex}>{ex}</li>
                 ))}
               </ul>
             </div>
           ))}
+        </div>
+
+        <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+          <p style={{
+            color: "var(--color-text-dim)",
+            fontSize: "0.875rem",
+            fontFamily: "var(--font-mono)",
+          }}>
+            Run our self-hosted facilitator or bring your own.
+          </p>
         </div>
       </div>
     </section>

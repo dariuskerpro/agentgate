@@ -20,6 +20,9 @@ const LIVE_ENDPOINTS = new Set([
   "/v1/phone-validate",
   "/v1/crypto-price",
   "/v1/ip-geolocate",
+  "/v1/transcribe",
+  "/v1/scrape-enrich",
+  "/v1/pdf-extract",
 ]);
 
 const EXAMPLE_BODIES: Record<string, string> = {
@@ -72,62 +75,12 @@ const EXAMPLE_BODIES: Record<string, string> = {
     2,
   ),
   "/v1/transcribe": "# Requires multipart/form-data with audio file\ncurl -X POST {URL} \\\n  -F 'file=@meeting.mp3'",
-  "/v1/voice-clone": JSON.stringify(
-    { voice_sample_url: "https://example.com/sample.mp3", text: "Hello world", language: "en" },
-    null,
-    2,
-  ),
-  "/v1/podcast-produce": JSON.stringify(
-    { transcript: "Your raw transcript here...", style: "conversational", intro: true, outro: true },
-    null,
-    2,
-  ),
-  "/v1/prd-to-scaffold": JSON.stringify(
-    { prd: "Your PRD document text...", framework: "express", include_tests: true, include_docker: true },
-    null,
-    2,
-  ),
-  "/v1/migrate": JSON.stringify(
-    { code: "Your source code...", from_framework: "express", to_framework: "hono" },
-    null,
-    2,
-  ),
   "/v1/scrape-enrich": JSON.stringify(
-    { url: "https://example.com/article", schema: { title: "string", author: "string", content: "string" } },
-    null,
-    2,
-  ),
-  "/v1/dataset-clean": JSON.stringify(
-    { data: [{ name: "John", email: "john@test.com" }, { name: "john", email: "JOHN@test.com" }], operations: ["deduplicate", "normalize"] },
-    null,
-    2,
-  ),
-  "/v1/lead-recon": JSON.stringify(
-    { business_name: "Acme Corp", location: "San Francisco, CA" },
+    { url: "https://example.com/article", schema: { title: "string", author: "string" } },
     null,
     2,
   ),
   "/v1/pdf-extract": "# Requires multipart/form-data with PDF file\ncurl -X POST {URL} \\\n  -F 'file=@invoice.pdf'",
-  "/v1/contract-review": JSON.stringify(
-    { contract_text: "Your legal contract text here..." },
-    null,
-    2,
-  ),
-  "/v1/scene-understand": JSON.stringify(
-    { image_url: "https://example.com/photo.jpg" },
-    null,
-    2,
-  ),
-  "/v1/brand-audit": JSON.stringify(
-    { screenshot_url: "https://example.com/screenshot.png" },
-    null,
-    2,
-  ),
-  "/v1/video-highlights": JSON.stringify(
-    { video_url: "https://example.com/video.mp4", max_highlights: 5 },
-    null,
-    2,
-  ),
 };
 
 function getCategoryIcon(category: string): string {

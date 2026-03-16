@@ -16,22 +16,21 @@ export function Hero() {
       <div className="container hero-content">
         <div className="hero-protocol-label">
           <span className="hero-protocol-line" />
-          <span>AGENT INFRASTRUCTURE</span>
+          <span>x402 PAYMENT PROTOCOL</span>
           <span className="hero-protocol-line" />
         </div>
 
         <h1 className="hero-headline">
-          <span className="hero-headline-top">The Infrastructure Layer</span>
+          <span className="hero-headline-top">Monetize any API</span>
           <span className="hero-headline-mid">
-            for the <span className="gradient-text">Agent Economy</span>
+            in <span className="gradient-text">3 lines of code</span>
           </span>
-          <span className="hero-headline-bot">Routing · Identity · Discovery · Payment</span>
         </h1>
 
         <p className="hero-sub">
-          AI agents need to find each other, call each other, and pay each other.
-          AgentGate is the protocol layer that makes it happen.
-          <strong> The Stripe of AI Agents.</strong>
+          Add x402 payments to your existing API. Your endpoints earn USDC from
+          every agent call. No signup for buyers. No invoicing for sellers.
+          Just HTTP + crypto.
         </p>
 
         <div className="hero-terminal">
@@ -39,39 +38,45 @@ export function Hero() {
             <span className="hero-terminal-dot hero-terminal-dot--red" />
             <span className="hero-terminal-dot hero-terminal-dot--yellow" />
             <span className="hero-terminal-dot hero-terminal-dot--green" />
-            <span className="hero-terminal-title">agent pipeline</span>
+            <span className="hero-terminal-title">middleware.ts</span>
           </div>
           <div className="hero-terminal-body">
-            <div className="hero-terminal-line">
-              <span className="hero-terminal-prompt">agent ›</span>
-              <span className="hero-terminal-cmd">agent-gate discover &quot;transcribe meeting audio&quot;</span>
+            <pre style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "0.85rem", lineHeight: 1.7, color: "var(--color-text-muted)" }}>
+              <code>{`import { paymentMiddleware } from '@agent-gate/middleware';
+
+app.use('/api/translate', paymentMiddleware({
+  price: '$0.02',
+  wallet: process.env.MY_WALLET,
+}));
+// That's it. Agents pay USDC per call via x402.`}</code>
+            </pre>
+          </div>
+        </div>
+
+        <div className="hero-try-it" style={{ marginTop: "2.5rem", textAlign: "center" }}>
+          <p style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.75rem",
+            color: "var(--color-text-dim)",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            marginBottom: "1rem",
+          }}>
+            This is a real endpoint. Try it. (Returns 402 — payment required via x402)
+          </p>
+          <div className="hero-terminal" style={{ maxWidth: "640px", margin: "0 auto", textAlign: "left" }}>
+            <div className="hero-terminal-bar">
+              <span className="hero-terminal-dot hero-terminal-dot--red" />
+              <span className="hero-terminal-dot hero-terminal-dot--yellow" />
+              <span className="hero-terminal-dot hero-terminal-dot--green" />
+              <span className="hero-terminal-title">terminal</span>
             </div>
-            <div className="hero-terminal-line hero-terminal-output">
-              <span className="hero-terminal-ok">&#10003;</span> Found AudioForge — $0.015/call
-            </div>
-            <div className="hero-terminal-line">
-              <span className="hero-terminal-prompt">agent ›</span>
-              <span className="hero-terminal-cmd">agent-gate call audioforge/transcribe --pay x402</span>
-            </div>
-            <div className="hero-terminal-line hero-terminal-output">
-              <span className="hero-terminal-ok">&#10003;</span> Transcript ready — piping to next agent
-            </div>
-            <div className="hero-terminal-line">
-              <span className="hero-terminal-prompt">agent ›</span>
-              <span className="hero-terminal-cmd">agent-gate call docintel/transcript-to-prd --pay x402</span>
-            </div>
-            <div className="hero-terminal-line hero-terminal-output">
-              <span className="hero-terminal-ok">&#10003;</span> PRD generated — 12 user stories, 3 epics
-            </div>
-            <div className="hero-terminal-line">
-              <span className="hero-terminal-prompt">agent ›</span>
-              <span className="hero-terminal-cmd">agent-gate call codesmith/prd-to-scaffold --pay x402</span>
-            </div>
-            <div className="hero-terminal-line hero-terminal-output">
-              <span className="hero-terminal-ok">&#10003;</span> Project scaffolded — tests, CI, Docker
-            </div>
-            <div className="hero-terminal-line hero-terminal-output hero-terminal-earning">
-              <span className="hero-terminal-dollar">$</span> 0.15 USDC total — 3 agents — 4.2s
+            <div className="hero-terminal-body">
+              <pre style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "0.8rem", lineHeight: 1.7, color: "var(--color-text-muted)", whiteSpace: "pre-wrap", wordBreak: "break-all" }}>
+                <code>{`curl -X POST https://fulfill.text2ai.com/v1/email-validate \\
+  -H "Content-Type: application/json" \\
+  -d '{"email": "test@gmail.com"}'`}</code>
+              </pre>
             </div>
           </div>
         </div>
