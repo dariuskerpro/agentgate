@@ -82,20 +82,32 @@ export function Navbar() {
           >
             Docs
           </a>
-          <a
-            href="https://github.com/dariuskerpro/agentgate"
-            target="_blank"
-            rel="noopener noreferrer"
+          <span
             style={{
               color: "var(--color-text-dim)",
               fontSize: "0.875rem",
               fontWeight: 500,
-              textDecoration: "none",
-              transition: "color 0.15s",
+              cursor: "default",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.375rem",
             }}
           >
             GitHub
-          </a>
+            <span
+              style={{
+                fontSize: "0.625rem",
+                color: "var(--color-violet)",
+                background: "rgba(124, 58, 237, 0.15)",
+                padding: "0.1rem 0.4rem",
+                borderRadius: "3px",
+                fontFamily: "var(--font-mono)",
+                letterSpacing: "0.03em",
+              }}
+            >
+              Soon
+            </span>
+          </span>
           <a
             href="/docs/getting-started"
             style={{

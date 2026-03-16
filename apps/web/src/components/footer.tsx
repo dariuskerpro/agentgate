@@ -11,13 +11,9 @@ export function Footer() {
         <nav className="footer-links">
           <a href="/docs">Docs</a>
           <a href="/marketplace">Marketplace</a>
-          <a
-            href="https://github.com/dariuskerpro/agentgate"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
+          <span style={{ color: "var(--color-text-dim)", cursor: "default" }}>
+            GitHub (Coming Soon)
+          </span>
           <a
             href="https://discord.gg/agentgate"
             target="_blank"
