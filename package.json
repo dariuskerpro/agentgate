@@ -6,8 +6,10 @@
   "license": "MIT",
   "scripts": {
     "build": "turbo build",
-    "test": "turbo test",
+    "test": "turbo test && vitest run --config vitest.config.ts",
     "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "deploy": "turbo deploy",
     "dev": "turbo dev",
     "clean": "turbo clean"
   },
@@ -15,7 +17,9 @@
     "@biomejs/biome": "^1.9.0",
     "@types/node": "^25.5.0",
     "turbo": "^2.4.0",
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.4",
+    "yaml": "^2.8.2"
   },
   "packageManager": "pnpm@10.32.1",
   "pnpm": {

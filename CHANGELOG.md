@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+### AG-014: Deployment Pipeline (CI/CD Configuration)
+- TDD: 9 tests written first validating workflow structure, then implementation
+- **CI workflow** (.github/workflows/ci.yml): lint, build, test on PR and push to main, pnpm + Node 22
+- **Deploy workflow** (.github/workflows/deploy.yml): auto-deploy on merge to main
+  - marketplace-api → Cloudflare Workers (wrangler)
+  - dashboard → Vercel
+  - web → Vercel
+- **Publish workflow** (.github/workflows/publish.yml): npm publish @agentgate/middleware and CLI on version tags (v*)
+- **wrangler.toml** in apps/marketplace-api/ for Cloudflare Workers + D1 config
+- Updated .gitignore with .next/, .wrangler/ entries
+- Added typecheck, deploy scripts to root package.json
+- Added typecheck, deploy tasks to turbo.json
+
 ### AG-011: Endpoint Health Monitoring
 - TDD: 12 tests written first (red), then implementation (green)
 - `probeEndpoint(url)` — HEAD request with 5-second AbortController timeout, no x402 headers

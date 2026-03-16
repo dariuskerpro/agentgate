@@ -1,8 +1,10 @@
 node_modules/
 dist/
 .turbo/
+.next/
 *.tsbuildinfo
 .env
 .env.local
+.wrangler/
 .DS_Store
 coverage/
