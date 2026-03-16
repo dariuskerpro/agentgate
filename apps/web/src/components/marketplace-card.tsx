@@ -11,7 +11,16 @@ interface Endpoint {
   price_usdc: string;
 }
 
-const LIVE_ENDPOINTS = new Set(["/v1/code-review", "/v1/transcript-to-prd"]);
+const LIVE_ENDPOINTS = new Set([
+  "/v1/code-review",
+  "/v1/transcript-to-prd",
+  "/v1/email-validate",
+  "/v1/dns-lookup",
+  "/v1/url-metadata",
+  "/v1/phone-validate",
+  "/v1/crypto-price",
+  "/v1/ip-geolocate",
+]);
 
 const EXAMPLE_BODIES: Record<string, string> = {
   "/v1/code-review": JSON.stringify(
@@ -29,6 +38,36 @@ const EXAMPLE_BODIES: Record<string, string> = {
         "PM: We need dark mode. Users keep asking. Dev: Should we detect system preference? PM: Yes, and manual toggle. Store in local storage. Ship by Friday.",
       template: "detailed",
     },
+    null,
+    2,
+  ),
+  "/v1/email-validate": JSON.stringify(
+    { email: "user@gmail.com" },
+    null,
+    2,
+  ),
+  "/v1/dns-lookup": JSON.stringify(
+    { domain: "example.com", types: ["A", "MX", "NS"] },
+    null,
+    2,
+  ),
+  "/v1/url-metadata": JSON.stringify(
+    { url: "https://example.com" },
+    null,
+    2,
+  ),
+  "/v1/phone-validate": JSON.stringify(
+    { phone: "+14155551234" },
+    null,
+    2,
+  ),
+  "/v1/crypto-price": JSON.stringify(
+    { ids: ["bitcoin", "ethereum"], currency: "usd" },
+    null,
+    2,
+  ),
+  "/v1/ip-geolocate": JSON.stringify(
+    { ip: "8.8.8.8" },
     null,
     2,
   ),

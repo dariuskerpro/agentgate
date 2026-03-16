@@ -20,7 +20,16 @@ interface Category {
   count: number;
 }
 
-const LIVE_ENDPOINTS = new Set(["/v1/code-review", "/v1/transcript-to-prd"]);
+const LIVE_ENDPOINTS = new Set([
+  "/v1/code-review",
+  "/v1/transcript-to-prd",
+  "/v1/email-validate",
+  "/v1/dns-lookup",
+  "/v1/url-metadata",
+  "/v1/phone-validate",
+  "/v1/crypto-price",
+  "/v1/ip-geolocate",
+]);
 
 async function getEndpoints(): Promise<Endpoint[]> {
   try {

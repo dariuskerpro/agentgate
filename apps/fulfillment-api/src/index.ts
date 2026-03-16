@@ -6,6 +6,12 @@ import { ExactSvmScheme } from "@x402/svm/exact/server";
 import { HTTPFacilitatorClient } from "@x402/core/server";
 import { handleCodeReview } from "./handlers/code-review.js";
 import { handleTranscriptToPrd } from "./handlers/transcript-to-prd.js";
+import { handleEmailValidate } from "./handlers/email-validate.js";
+import { handleDnsLookup } from "./handlers/dns-lookup.js";
+import { handleUrlMetadata } from "./handlers/url-metadata.js";
+import { handlePhoneValidate } from "./handlers/phone-validate.js";
+import { handleCryptoPrice } from "./handlers/crypto-price.js";
+import { handleIpGeolocate } from "./handlers/ip-geolocate.js";
 
 const SELLER_WALLET = process.env.SELLER_WALLET || "";
 const SELLER_WALLET_SOL = process.env.SELLER_WALLET_SOL || "";
@@ -78,15 +84,52 @@ if (USE_PAYMENTS && (SELLER_WALLET || SELLER_WALLET_SOL)) {
     });
   }
 
+  // Helper to build accepts array at a given price
+  function buildAccepts(price: string) {
+    const opts = [];
+    if (SELLER_WALLET) {
+      opts.push({ scheme: "exact", network: EVM_NETWORK, price, payTo: SELLER_WALLET });
+    }
+    if (SELLER_WALLET_SOL) {
+      opts.push({ scheme: "exact", network: SOL_NETWORK, price, payTo: SELLER_WALLET_SOL });
+    }
+    return opts.length === 1 ? opts[0] : opts;
+  }
+
   const routes = {
+    // --- Premium (AI inference) ---
     "POST /v1/code-review": {
       accepts: acceptsOptions.length === 1 ? acceptsOptions[0] : acceptsOptions,
       description: "Code review — security, performance, and architecture feedback (up to 100K chars)",
     },
     "POST /v1/transcript-to-prd": {
       accepts: acceptsOptionsPrd.length === 1 ? acceptsOptionsPrd[0] : acceptsOptionsPrd,
-      description:
-        "Meeting transcript → structured PRD with user stories, acceptance criteria, and priorities",
+      description: "Meeting transcript → structured PRD with user stories, acceptance criteria, and priorities",
+    },
+    // --- Utility (micropayment) ---
+    "POST /v1/email-validate": {
+      accepts: buildAccepts("$0.0005"),
+      description: "Email validation — format, MX records, disposable detection, typo suggestions",
+    },
+    "POST /v1/dns-lookup": {
+      accepts: buildAccepts("$0.0003"),
+      description: "DNS lookup — A, AAAA, MX, NS, TXT, CNAME, SOA records for any domain",
+    },
+    "POST /v1/url-metadata": {
+      accepts: buildAccepts("$0.0005"),
+      description: "URL metadata extraction — title, description, OG tags, Twitter cards, favicon",
+    },
+    "POST /v1/phone-validate": {
+      accepts: buildAccepts("$0.0003"),
+      description: "Phone validation — format check, E.164 normalization, country detection",
+    },
+    "POST /v1/crypto-price": {
+      accepts: buildAccepts("$0.0001"),
+      description: "Crypto price lookup — current price, 24h change, market cap, volume",
+    },
+    "POST /v1/ip-geolocate": {
+      accepts: buildAccepts("$0.0002"),
+      description: "IP geolocation — country, city, ISP, coordinates, timezone",
     },
   };
 
@@ -123,8 +166,16 @@ if (USE_PAYMENTS && (SELLER_WALLET || SELLER_WALLET_SOL)) {
 }
 
 // Endpoints (called only after payment verification when x402 is enabled)
+// Premium (AI inference)
 app.post("/v1/code-review", handleCodeReview);
 app.post("/v1/transcript-to-prd", handleTranscriptToPrd);
+// Utility (micropayment)
+app.post("/v1/email-validate", handleEmailValidate);
+app.post("/v1/dns-lookup", handleDnsLookup);
+app.post("/v1/url-metadata", handleUrlMetadata);
+app.post("/v1/phone-validate", handlePhoneValidate);
+app.post("/v1/crypto-price", handleCryptoPrice);
+app.post("/v1/ip-geolocate", handleIpGeolocate);
 
 // 404 fallback
 app.notFound((c) => c.json({ error: "Not found" }, 404));
