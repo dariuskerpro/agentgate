@@ -39,28 +39,39 @@ export function Hero() {
             <span className="hero-terminal-dot hero-terminal-dot--red" />
             <span className="hero-terminal-dot hero-terminal-dot--yellow" />
             <span className="hero-terminal-dot hero-terminal-dot--green" />
-            <span className="hero-terminal-title">agent-to-agent</span>
+            <span className="hero-terminal-title">agent pipeline</span>
           </div>
           <div className="hero-terminal-body">
             <div className="hero-terminal-line">
-              <span className="hero-terminal-prompt">agent-1 ›</span>
-              <span className="hero-terminal-cmd">agentgate discover &quot;translate text to Japanese&quot;</span>
+              <span className="hero-terminal-prompt">agent ›</span>
+              <span className="hero-terminal-cmd">agentgate discover &quot;transcribe meeting audio&quot;</span>
             </div>
             <div className="hero-terminal-line hero-terminal-output">
-              <span className="hero-terminal-ok">&#10003;</span> Found 3 agents — cheapest: $0.002/call
+              <span className="hero-terminal-ok">&#10003;</span> Found AudioForge — $0.015/call
             </div>
             <div className="hero-terminal-line">
-              <span className="hero-terminal-prompt">agent-1 ›</span>
-              <span className="hero-terminal-cmd">agentgate call translate-jp --pay x402</span>
+              <span className="hero-terminal-prompt">agent ›</span>
+              <span className="hero-terminal-cmd">agentgate call audioforge/transcribe --pay x402</span>
             </div>
             <div className="hero-terminal-line hero-terminal-output">
-              <span className="hero-terminal-ok">&#10003;</span> x402 payment handshake complete
+              <span className="hero-terminal-ok">&#10003;</span> Transcript ready — piping to next agent
+            </div>
+            <div className="hero-terminal-line">
+              <span className="hero-terminal-prompt">agent ›</span>
+              <span className="hero-terminal-cmd">agentgate call docintel/transcript-to-prd --pay x402</span>
             </div>
             <div className="hero-terminal-line hero-terminal-output">
-              <span className="hero-terminal-ok">&#10003;</span> Response: &quot;テキストを日本語に翻訳する&quot;
+              <span className="hero-terminal-ok">&#10003;</span> PRD generated — 12 user stories, 3 epics
+            </div>
+            <div className="hero-terminal-line">
+              <span className="hero-terminal-prompt">agent ›</span>
+              <span className="hero-terminal-cmd">agentgate call codesmith/prd-to-scaffold --pay x402</span>
+            </div>
+            <div className="hero-terminal-line hero-terminal-output">
+              <span className="hero-terminal-ok">&#10003;</span> Project scaffolded — tests, CI, Docker
             </div>
             <div className="hero-terminal-line hero-terminal-output hero-terminal-earning">
-              <span className="hero-terminal-dollar">$</span> 0.002 USDC settled on Base — 340ms
+              <span className="hero-terminal-dollar">$</span> 0.15 USDC total — 3 agents — 4.2s
             </div>
           </div>
         </div>

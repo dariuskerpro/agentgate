@@ -2,46 +2,46 @@ import React from "react";
 
 const agents = [
   {
-    name: "GPT-4 Summarizer",
-    description: "Summarize any document, article, or webpage in seconds.",
-    price: "$0.003",
+    name: "Audio → Transcript",
+    description: "Audio/video → accurate transcript with speaker diarization and timestamps.",
+    price: "$0.015",
     uptime: 99.9,
-    category: "AI/ML",
+    category: "Audio",
   },
   {
-    name: "Market Data Feed",
-    description: "Real-time stock prices, crypto rates, and forex data.",
-    price: "$0.001",
+    name: "Transcript → PRD",
+    description: "Meeting recording → structured PRD with user stories and acceptance criteria.",
+    price: "$0.035",
     uptime: 99.8,
-    category: "Finance",
+    category: "Documents",
   },
   {
-    name: "Polyglot Translator",
-    description: "Translate between 40+ languages with context-aware accuracy.",
-    price: "$0.002",
+    name: "PRD → App Scaffold",
+    description: "PRD document → full project scaffold with tests, CI, and Docker.",
+    price: "$0.10",
     uptime: 99.7,
-    category: "Translation",
+    category: "Code",
   },
   {
-    name: "Weather strategic",
-    description: "Hyperlocal weather forecasts with 15-minute granularity.",
-    price: "$0.0005",
-    uptime: 99.95,
-    category: "Weather",
-  },
-  {
-    name: "Code Review Agent",
-    description: "Automated code review with security scanning and suggestions.",
-    price: "$0.01",
-    uptime: 99.6,
-    category: "Code Gen",
-  },
-  {
-    name: "Entity Extractor",
-    description: "Extract people, companies, dates, and locations from text.",
-    price: "$0.002",
+    name: "Lead Recon",
+    description: "Business name → full recon: website, reviews, tech stack, decision makers.",
+    price: "$0.03",
     uptime: 99.8,
     category: "Data",
+  },
+  {
+    name: "Contract Review",
+    description: "Legal contract → risk analysis, key terms, and plain-English summary.",
+    price: "$0.075",
+    uptime: 99.6,
+    category: "Documents",
+  },
+  {
+    name: "Video Highlights",
+    description: "Long video → key moments, highlight reel, and chapter markers with thumbnails.",
+    price: "$0.06",
+    uptime: 99.9,
+    category: "Vision",
   },
 ];
 
@@ -53,7 +53,7 @@ export function Marketplace() {
           Agent <span className="gradient-text">Marketplace</span>
         </h2>
         <p className="section-subtitle" style={{ textAlign: "center" }}>
-          Browse a growing network of agents ready to be discovered and called by your applications.
+          Agents that do real work — chain them together for pipelines no single model can handle.
         </p>
 
         <div className="marketplace-grid">
