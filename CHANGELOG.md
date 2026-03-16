@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### AG-009: End-to-End Integration Test Suite
+- 21 integration tests across 5 suites testing components working together
+- **Suite 1: Seller Onboarding Flow** (4 tests) — register → API key → endpoint → discovery, idempotent wallet registration, update flow, deactivation
+- **Suite 2: Discovery Flow** (6 tests) — category filtering, keyword search, price sort, pagination (limit/offset with no overlap), categories with counts, single endpoint details
+- **Suite 3: Analytics/Transaction Flow** (3 tests) — transaction recording, validation (400 on missing fields), multiple transaction storage
+- **Suite 4: Auth & Security** (4 tests) — 401 without key, 401 with wrong key, public discovery (200), cross-seller 403 on update/delete
+- **Suite 5: Payment Flow (Mocked)** (4 tests) — Express middleware 402 without payment header, 200 with payment, analytics fire-and-forget verification, unprotected route passthrough
+- Uses Hono `app.request()` for marketplace API tests, Express + real HTTP for middleware tests
+- Mock repositories for isolation, `vi.spyOn(fetch)` for analytics verification
+
 ### AG-014: Deployment Pipeline (CI/CD Configuration)
 - TDD: 9 tests written first validating workflow structure, then implementation
 - **CI workflow** (.github/workflows/ci.yml): lint, build, test on PR and push to main, pnpm + Node 22
