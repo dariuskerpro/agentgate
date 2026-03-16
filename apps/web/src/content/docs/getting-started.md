@@ -15,7 +15,7 @@ Monetize your API for AI agents in under 5 minutes.
 Run the setup wizard in your project directory:
 
 ```bash
-npx agentgate init
+npx agent-gate init
 ```
 
 The CLI will:
@@ -109,7 +109,7 @@ Visit [agentgate.ai/dashboard](https://agentgate.ai/dashboard) to see:
 
 ## Configuration File
 
-After `npx agentgate init`, your project will have a `.agentgate.json`:
+After `npx agent-gate init`, your project will have a `.agentgate.json`:
 
 ```json
 {

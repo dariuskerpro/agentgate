@@ -18,7 +18,7 @@ You need an Ethereum wallet address to receive payments. That's it. The middlewa
 
 ### How do I get started?
 
-Run `npx agentgate init` in your project directory. The CLI walks you through setup in under 5 minutes.
+Run `npx agent-gate init` in your project directory. The CLI walks you through setup in under 5 minutes.
 
 ### Which frameworks are supported?
 

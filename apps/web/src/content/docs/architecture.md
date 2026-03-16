@@ -9,7 +9,7 @@ AgentGate is **not a proxy**. It's a middleware layer + marketplace that connect
 ```
 Agent (buyer)                    Developer (seller)
     │                                │
-    │  1. Query marketplace          │  0. npx agentgate init
+    │  1. Query marketplace          │  0. npx agent-gate init
     ▼                                ▼
 ┌──────────────┐            ┌──────────────────┐
 │ Marketplace  │            │ Seller's API     │
@@ -55,7 +55,7 @@ A Hono application running on Cloudflare Workers. Responsibilities:
 **Database:** PostgreSQL on Neon (serverless)
 **Cache/Rate Limiting:** Upstash Redis
 
-### 3. CLI (`npx agentgate init`)
+### 3. CLI (`npx agent-gate init`)
 
 Interactive setup wizard that:
 
