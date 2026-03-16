@@ -33,7 +33,7 @@ describe("AG-005: Database Schema", () => {
     it("uses uuid primary key for id", () => {
       const cols = getColumns(sellers);
       expect(cols.id.columnType).toBe("PgUUID");
-      expect(cols.id.isPrimaryKey).toBe(true);
+      expect(cols.id.primary).toBe(true);
     });
 
     it("has a unique constraint on wallet_address", () => {
@@ -96,7 +96,7 @@ describe("AG-005: Database Schema", () => {
     it("uses uuid primary key for id", () => {
       const cols = getColumns(endpoints);
       expect(cols.id.columnType).toBe("PgUUID");
-      expect(cols.id.isPrimaryKey).toBe(true);
+      expect(cols.id.primary).toBe(true);
     });
 
     it("seller_id references sellers.id", () => {
