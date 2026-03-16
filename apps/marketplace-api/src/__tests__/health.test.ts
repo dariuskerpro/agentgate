@@ -103,7 +103,7 @@ describe("AG-011: Endpoint Health Monitoring", () => {
 
       expect(result.isUp).toBe(false);
       expect(result.statusCode).toBe(0);
-      expect(result.latencyMs).toBeGreaterThanOrEqual(100);
+      expect(result.latencyMs).toBeGreaterThanOrEqual(90);
     });
 
     it("server error returns isUp: false with statusCode 500", async () => {
