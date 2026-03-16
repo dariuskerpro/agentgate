@@ -24,6 +24,7 @@ export function createDb(connectionString: string): {
       max: 10, // connection pool size
       idle_timeout: 20,
       connect_timeout: 10,
+      ssl: "require",
     });
 
     const db = drizzle(client, { schema });

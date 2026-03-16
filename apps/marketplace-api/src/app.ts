@@ -13,8 +13,15 @@ export function createApp(repos: Repositories) {
 
   // Global error handler — log errors in production
   app.onError((err, c) => {
+    const errObj = err as any;
     console.error(`[ERROR] ${c.req.method} ${c.req.path}:`, err.message, err.stack);
-    return c.json({ error: "Internal Server Error", message: err.message }, 500);
+    return c.json({ 
+      error: "Internal Server Error", 
+      message: err.message,
+      code: errObj.code,
+      errno: errObj.errno,
+      cause: errObj.cause?.message,
+    }, 500);
   });
 
   // Health check
