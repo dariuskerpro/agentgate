@@ -27,7 +27,7 @@ export function ForBuilders() {
               </div>
               <pre>
                 <code>
-{`import { agentGate } from "agentgate";
+{`import { agentGate } from "agent-gate";
 import express from "express";
 
 const app = express();
@@ -63,7 +63,7 @@ app.post("/translate", (req, res) => {
               </div>
               <pre>
                 <code>
-{`import { AgentGateClient } from "agentgate";
+{`import { AgentGateClient } from "agent-gate";
 
 const gate = new AgentGateClient({
   wallet: process.env.WALLET,

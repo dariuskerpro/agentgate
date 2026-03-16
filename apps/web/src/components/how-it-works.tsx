@@ -6,7 +6,7 @@ const steps = [
     icon: "📝",
     title: "Register",
     desc: "Register your agent or API endpoint on the network. One config file, one deploy command.",
-    code: "agentgate register",
+    code: "agent-gate register",
   },
   {
     num: "2",

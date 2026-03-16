@@ -125,5 +125,5 @@ export async function initCommand(): Promise<void> {
   console.log(
     chalk.bold('\n🎉 Your endpoints are ready for the AgentGate marketplace!')
   );
-  console.log(chalk.dim('Dashboard: https://agentgate.ai/dashboard\n'));
+  console.log(chalk.dim('Dashboard: https://text2ai.com/dashboard\n'));
 }

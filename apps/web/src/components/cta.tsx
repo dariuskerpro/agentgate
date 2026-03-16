@@ -22,7 +22,7 @@ export function CTA() {
           <div className="hero-terminal-body">
             <div className="hero-terminal-line">
               <span className="hero-terminal-prompt">~</span>
-              <span className="hero-terminal-cmd">npx agentgate init</span>
+              <span className="hero-terminal-cmd">npx agent-gate init</span>
             </div>
           </div>
         </div>

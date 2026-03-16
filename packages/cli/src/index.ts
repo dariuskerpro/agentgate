@@ -6,7 +6,7 @@ import { initCommand } from './commands/init.js';
 const program = new Command();
 
 program
-  .name('agentgate')
+  .name('agent-gate')
   .description('AgentGate CLI — monetize your API for AI agents')
   .version('0.0.1');
 

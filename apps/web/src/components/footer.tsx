@@ -12,7 +12,7 @@ export function Footer() {
           <a href="/docs">Docs</a>
           <a href="/marketplace">Marketplace</a>
           <a
-            href="https://github.com/anthropics/agentgate"
+            href="https://github.com/dariuskerpro/agentgate"
             target="_blank"
             rel="noopener noreferrer"
           >

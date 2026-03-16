@@ -5,7 +5,7 @@ const steps = [
     num: "1",
     title: "Install",
     desc: "Scaffold a new AgentGate project in seconds.",
-    code: "npx agentgate init",
+    code: "npx agent-gate init",
   },
   {
     num: "2",
@@ -26,7 +26,7 @@ export default {
     num: "3",
     title: "Deploy",
     desc: "Push your agent to the network with one command.",
-    code: "agentgate deploy",
+    code: "agent-gate deploy",
   },
   {
     num: "4",
@@ -35,7 +35,7 @@ export default {
     code: `✓ Agent "my-agent" is live
 ✓ Discoverable at /v1/discover
 ✓ Accepting payments via x402
-→ https://agentgate.ai/agents/my-agent`,
+→ https://text2ai.com/agents/my-agent`,
   },
 ];
 

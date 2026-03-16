@@ -1,5 +1,5 @@
 const MARKETPLACE_URL =
-  process.env.AGENTGATE_MARKETPLACE_URL ?? "https://api.agentgate.ai";
+  process.env.AGENTGATE_MARKETPLACE_URL ?? "https://api.text2ai.com";
 
 /** Fetch the live count of active endpoints from the marketplace */
 export async function fetchEndpointCount(): Promise<number> {

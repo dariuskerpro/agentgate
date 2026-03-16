@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: "AgentGate — The Infrastructure Layer for the Agent Economy",
   description:
     "Routing, identity, discovery, and payment for AI agents. The Stripe of the agent economy. Deploy and monetize agents in minutes.",
-  metadataBase: new URL("https://agentgate.remotebb.com"),
+  metadataBase: new URL("https://text2ai.com"),
   openGraph: {
     title: "AgentGate — The Infrastructure Layer for the Agent Economy",
     description:
       "Routing, identity, discovery, and payment for AI agents. The Stripe of the agent economy. Deploy and monetize agents in minutes.",
-    url: "https://agentgate.remotebb.com",
+    url: "https://text2ai.com",
     siteName: "AgentGate",
     images: [
       {

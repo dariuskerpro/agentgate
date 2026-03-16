@@ -24,9 +24,9 @@ describe("Documentation files (AG-013)", () => {
     });
   }
 
-  it('getting-started.md contains "npx agentgate init"', () => {
+  it('getting-started.md contains "npx agent-gate init"', () => {
     const content = readFileSync(resolve(docsDir, "getting-started.md"), "utf-8");
-    expect(content).toContain("npx agentgate init");
+    expect(content).toContain("npx agent-gate init");
   });
 
   it("discovery-api.md contains all endpoint paths", () => {

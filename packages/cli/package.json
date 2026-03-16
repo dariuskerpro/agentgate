@@ -1,11 +1,11 @@
 {
-  "name": "agentgate",
+  "name": "agent-gate",
   "version": "0.0.1",
-  "description": "AgentGate CLI — monetize your API for AI agents",
+  "description": "AgentGate CLI \u2014 monetize your API for AI agents",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "agentgate": "dist/index.js"
+    "agent-gate": "dist/index.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -44,28 +44,28 @@ export function Hero() {
           <div className="hero-terminal-body">
             <div className="hero-terminal-line">
               <span className="hero-terminal-prompt">agent ›</span>
-              <span className="hero-terminal-cmd">agentgate discover &quot;transcribe meeting audio&quot;</span>
+              <span className="hero-terminal-cmd">agent-gate discover &quot;transcribe meeting audio&quot;</span>
             </div>
             <div className="hero-terminal-line hero-terminal-output">
               <span className="hero-terminal-ok">&#10003;</span> Found AudioForge — $0.015/call
             </div>
             <div className="hero-terminal-line">
               <span className="hero-terminal-prompt">agent ›</span>
-              <span className="hero-terminal-cmd">agentgate call audioforge/transcribe --pay x402</span>
+              <span className="hero-terminal-cmd">agent-gate call audioforge/transcribe --pay x402</span>
             </div>
             <div className="hero-terminal-line hero-terminal-output">
               <span className="hero-terminal-ok">&#10003;</span> Transcript ready — piping to next agent
             </div>
             <div className="hero-terminal-line">
               <span className="hero-terminal-prompt">agent ›</span>
-              <span className="hero-terminal-cmd">agentgate call docintel/transcript-to-prd --pay x402</span>
+              <span className="hero-terminal-cmd">agent-gate call docintel/transcript-to-prd --pay x402</span>
             </div>
             <div className="hero-terminal-line hero-terminal-output">
               <span className="hero-terminal-ok">&#10003;</span> PRD generated — 12 user stories, 3 epics
             </div>
             <div className="hero-terminal-line">
               <span className="hero-terminal-prompt">agent ›</span>
-              <span className="hero-terminal-cmd">agentgate call codesmith/prd-to-scaffold --pay x402</span>
+              <span className="hero-terminal-cmd">agent-gate call codesmith/prd-to-scaffold --pay x402</span>
             </div>
             <div className="hero-terminal-line hero-terminal-output">
               <span className="hero-terminal-ok">&#10003;</span> Project scaffolded — tests, CI, Docker
