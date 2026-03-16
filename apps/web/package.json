@@ -1,0 +1,17 @@
+{
+  "name": "@agentgate/web",
+  "version": "0.0.1",
+  "description": "AgentGate Landing Page",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "biome check src/",
+    "dev": "echo 'Landing page dev not configured yet'"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}

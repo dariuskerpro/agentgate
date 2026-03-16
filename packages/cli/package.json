@@ -1,0 +1,23 @@
+{
+  "name": "agentgate",
+  "version": "0.0.1",
+  "description": "AgentGate CLI — monetize your API for AI agents",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "agentgate": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "biome check src/"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}

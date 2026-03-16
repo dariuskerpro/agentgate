@@ -1,0 +1,17 @@
+{
+  "name": "@agentgate/dashboard",
+  "version": "0.0.1",
+  "description": "AgentGate Seller Dashboard — Next.js",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "biome check src/",
+    "dev": "echo 'Next.js dev not configured yet'"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}
