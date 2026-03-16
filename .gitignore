@@ -8,3 +8,7 @@ dist/
 .wrangler/
 .DS_Store
 coverage/
+
+# Build outputs
+apps/web/out/
+
