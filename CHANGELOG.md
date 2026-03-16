@@ -23,6 +23,23 @@
 - Drizzle config for migration generation
 - Seed script: 3 sellers, 10 endpoints across data/compute/ml categories, 10 transactions
 
+### AG-003: Hono Middleware
+- TDD: 12 tests written first (red), then implementation (green)
+- `agentgate()` Hono middleware with route-level x402 payment protection
+- Feature parity with Express middleware (402 responses, analytics, graceful degradation)
+- Cloudflare Workers compatible — no Node.js-specific APIs
+- Typed without requiring Hono as a runtime dependency (optional peer dep)
+- Exported from `@agentgate/middleware/hono`
+
+### AG-004: Next.js Middleware
+- TDD: 11 tests written first (red), then implementation (green)
+- `withAgentGate()` wrapper for Next.js App Router route handlers
+- Route-level config: wallet + price per handler (not global middleware.ts)
+- Async analytics events fire on settled payments
+- Config validation at init: wallet required, valid price required
+- Works with async handler functions
+- Exported from `@agentgate/middleware/next`
+
 ### AG-002: Express Middleware
 - TDD: 18 tests written first (red), then implementation (green)
 - `agentgate()` Express middleware with route-level x402 payment protection

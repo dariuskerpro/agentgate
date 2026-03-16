@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { getTableConfig } from "drizzle-orm/pg-core";
+import { getTableName } from "drizzle-orm";
 import {
   sellers,
   endpoints,
@@ -106,7 +107,7 @@ describe("AG-005: Database Schema", () => {
       );
       expect(fk).toBeDefined();
       const ref = fk!.reference();
-      expect(ref.foreignTable[Symbol.for("drizzle:Name")]).toBe("sellers");
+      expect(getTableName(ref.foreignTable as any)).toBe("sellers");
       expect(ref.foreignColumns.some((c: any) => c.name === "id")).toBe(true);
     });
 
@@ -177,7 +178,7 @@ describe("AG-005: Database Schema", () => {
       );
       expect(fk).toBeDefined();
       const ref = fk!.reference();
-      expect(ref.foreignTable[Symbol.for("drizzle:Name")]).toBe("endpoints");
+      expect(getTableName(ref.foreignTable as any)).toBe("endpoints");
     });
 
     it("buyer_wallet is not nullable", () => {
@@ -221,7 +222,7 @@ describe("AG-005: Database Schema", () => {
       );
       expect(fk).toBeDefined();
       const ref = fk!.reference();
-      expect(ref.foreignTable[Symbol.for("drizzle:Name")]).toBe("endpoints");
+      expect(getTableName(ref.foreignTable as any)).toBe("endpoints");
     });
   });
 

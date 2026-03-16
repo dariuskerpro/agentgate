@@ -14,6 +14,14 @@
     "./express": {
       "types": "./dist/express.d.ts",
       "import": "./dist/express.js"
+    },
+    "./hono": {
+      "types": "./dist/hono.d.ts",
+      "import": "./dist/hono.js"
+    },
+    "./next": {
+      "types": "./dist/next.d.ts",
+      "import": "./dist/next.js"
     }
   },
   "files": ["dist"],
@@ -27,10 +35,18 @@
     "vitest": "^3.0.0"
   },
   "peerDependencies": {
-    "express": ">=4.0.0"
+    "express": ">=4.0.0",
+    "hono": ">=4.0.0",
+    "next": ">=14.0.0"
   },
   "peerDependenciesMeta": {
     "express": {
+      "optional": true
+    },
+    "hono": {
+      "optional": true
+    },
+    "next": {
       "optional": true
     }
   }
