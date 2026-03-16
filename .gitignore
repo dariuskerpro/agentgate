@@ -12,3 +12,5 @@ coverage/
 # Build outputs
 apps/web/out/
 
+__pycache__/
+*.pyc
