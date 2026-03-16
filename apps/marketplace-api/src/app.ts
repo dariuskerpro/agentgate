@@ -26,8 +26,19 @@ export function createApp(repos: Repositories) {
       const result = await repos.endpoints.discover({ limit: 1, offset: 0 });
       return c.json({ status: "ok", db: "connected" });
     } catch (err: any) {
-      console.error("[DB HEALTH]", err.message);
-      return c.json({ status: "error", message: err.message }, 500);
+      const detail = {
+        message: err.message,
+        code: err.code,
+        detail: err.detail,
+        hint: err.hint,
+        severity: err.severity,
+        routine: err.routine,
+        // Show masked connection info for debugging
+        db_url_length: process.env.DATABASE_URL?.length,
+        db_url_start: process.env.DATABASE_URL?.substring(0, 30) + "...",
+      };
+      console.error("[DB HEALTH]", JSON.stringify(detail));
+      return c.json({ status: "error", ...detail }, 500);
     }
   });
 
