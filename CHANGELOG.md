@@ -2,6 +2,20 @@
 
 ## [Unreleased]
 
+### AG-008: CLI `npx agentgate init`
+- TDD: 17 tests written first (red), then implementation (green)
+- `detectFramework()` — auto-detects Express, Next.js, Hono from package.json deps
+- `generateApiKey()` — generates `ag_` + 32 hex char unique keys
+- `generateConfig()` — creates `.agentgate.json` with wallet, apiKey, routes, network (eip155:8453), facilitator URL
+- `validateWalletAddress()` — validates 0x + 40 hex char Ethereum addresses
+- `parseRoutePrice()` — parses `$0.001` and `0.001` formats, rejects invalid/negative
+- `generateMiddlewareSnippet()` — generates framework-specific integration code (Express, Hono, Next.js)
+- Interactive CLI flow: framework detection → wallet input → marketplace registration → route pricing → config generation → snippet output
+- `MarketplaceClient` API client for seller registration and endpoint management
+- Commander-based CLI with `agentgate init` subcommand
+- Graceful fallback to local API key when marketplace is unavailable
+- Dependencies: inquirer, chalk, ora, commander
+
 ### AG-001: Project Scaffolding
 - Turborepo monorepo with pnpm workspaces
 - TypeScript 5.x throughout all packages/apps
