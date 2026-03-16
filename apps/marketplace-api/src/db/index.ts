@@ -1,6 +1,10 @@
 import { drizzle, type PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
+import dns from "node:dns";
 import * as schema from "./schema.js";
+
+// Force IPv4 DNS resolution — Railway has IPv6 egress issues with some providers
+dns.setDefaultResultOrder("ipv4first");
 
 export { schema };
 export type Database = PostgresJsDatabase<typeof schema>;
