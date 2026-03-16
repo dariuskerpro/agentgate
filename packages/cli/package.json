@@ -1,5 +1,5 @@
 {
-  "name": "agent-gate",
+  "name": "@dkerpal/agent-gate",
   "version": "0.0.1",
   "description": "AgentGate CLI \u2014 monetize your API for AI agents",
   "license": "MIT",
