@@ -16,6 +16,8 @@ RUN pnpm install --frozen-lockfile
 
 # Copy source and build
 COPY --from=pruner /app/out/full/ .
+# turbo prune doesn't always include root config files — copy explicitly
+COPY --from=pruner /app/tsconfig.base.json ./tsconfig.base.json
 RUN pnpm turbo build --filter=@agentgate/marketplace-api
 
 # ── Stage 3: Production runtime ──────────────────────────────
