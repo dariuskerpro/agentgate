@@ -1,7 +1,7 @@
 {
   "name": "@agent-gate/fulfillment-api",
   "version": "0.0.1",
-  "description": "AgentGate Fulfillment API \u2014 AI-powered code review & transcript-to-PRD endpoints",
+  "description": "AgentGate Fulfillment API — AI-powered code review & transcript-to-PRD endpoints",
   "license": "UNLICENSED",
   "private": true,
   "type": "module",
@@ -16,11 +16,14 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@hono/node-server": "^1.19.11",
+    "@x402/core": "^2.7.0",
+    "@x402/evm": "^2.7.0",
+    "@x402/hono": "^2.7.0",
     "hono": "^4.12.8"
   },
   "devDependencies": {
     "tsx": "^4.19.0",
-    "vitest": "^3.2.4",
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.4"
   }
 }
