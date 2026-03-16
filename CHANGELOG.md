@@ -11,6 +11,18 @@
 - Apps: `marketplace-api` (stub), `dashboard` (stub), `web` (stub)
 - All packages compile and test successfully from root
 
+### AG-005: Database Schema & Setup
+- TDD: 33 schema validation tests written first (red), then implementation (green)
+- Drizzle ORM schema with 4 tables: sellers, endpoints, transactions, endpoint_health
+- Proper types: uuid PKs with gen_random_uuid(), timestamptz with NOW(), numeric(20,8) for USDC amounts, jsonb for schemas
+- Foreign keys: endpoints → sellers, transactions → endpoints, endpoint_health → endpoints
+- Unique constraints: sellers.wallet_address, sellers.api_key, endpoints(url, method)
+- Composite primary key on endpoint_health(endpoint_id, checked_at)
+- 6 indexes including partial index on active endpoints (WHERE active = TRUE)
+- Database connection helper with postgres.js driver (edge-compatible)
+- Drizzle config for migration generation
+- Seed script: 3 sellers, 10 endpoints across data/compute/ml categories, 10 transactions
+
 ### AG-002: Express Middleware
 - TDD: 18 tests written first (red), then implementation (green)
 - `agentgate()` Express middleware with route-level x402 payment protection

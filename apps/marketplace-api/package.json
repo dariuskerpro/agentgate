@@ -10,7 +10,10 @@
     "build": "tsc",
     "test": "vitest run",
     "lint": "biome check src/",
-    "dev": "echo 'dev server not configured yet'"
+    "dev": "echo 'dev server not configured yet'",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx src/db/seed.ts"
   },
   "devDependencies": {
     "dotenv": "^17.3.1",
