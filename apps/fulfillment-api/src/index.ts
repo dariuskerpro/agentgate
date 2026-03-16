@@ -2,7 +2,7 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { paymentMiddlewareFromConfig, type SchemeRegistration } from "@x402/hono";
 import { ExactEvmScheme } from "@x402/evm/exact/server";
-import { HTTPFacilitatorClient } from "@x402/core/facilitator";
+import { HTTPFacilitatorClient } from "@x402/core/server";
 import { handleCodeReview } from "./handlers/code-review.js";
 import { handleTranscriptToPrd } from "./handlers/transcript-to-prd.js";
 
