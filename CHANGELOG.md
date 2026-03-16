@@ -2,6 +2,36 @@
 
 ## [Unreleased]
 
+### AG-013: Documentation
+- 6 documentation pages in `apps/web/src/content/docs/`
+- Getting Started: 5-minute quickstart with `npx agentgate init`
+- Middleware Reference: Config options for Express, Hono, Next.js
+- Discovery API: Full API reference with request/response examples for all endpoints
+- Pricing Guide: Per-category benchmarks ($0.001 data → $0.10 ML), pricing strategy
+- Architecture: x402 payment flow, component overview, infrastructure choices
+- FAQ: Common questions for sellers and agents
+- 8 tests: file existence, content validation (npx command, endpoint paths)
+
+### AG-012: Landing Page
+- Landing page at `apps/web/src/app/page.tsx` with 5 sections
+- Hero: tagline + `npx agentgate init` CTA
+- HowItWorks: 3-step Install → Configure → Earn flow
+- ForSellers: key benefits list (5-min setup, USDC, analytics)
+- ForAgents: discovery API + code example
+- Footer: docs, GitHub, community links
+- `fetchEndpointCount()` API client for live marketplace stats
+- 8 tests: API mock (success/failure), component export validation
+
+### AG-010: Seller Analytics Dashboard
+- Next.js App Router structure in `apps/dashboard/`
+- `formatUSDC()` — formats numbers as $X.XX
+- `aggregateStats()` — computes total revenue, tx count, unique wallets
+- `groupByEndpoint()` — per-endpoint revenue/tx breakdown
+- `groupByDay()` — daily chart data, sorted chronologically
+- StatsCard, EndpointTable, RevenueChart components
+- Stub dashboard page with sample transaction data
+- 10 tests: formatting, aggregation, grouping, component rendering (jsdom)
+
 ### AG-009: End-to-End Integration Test Suite
 - 21 integration tests across 5 suites testing components working together
 - **Suite 1: Seller Onboarding Flow** (4 tests) — register → API key → endpoint → discovery, idempotent wallet registration, update flow, deactivation
