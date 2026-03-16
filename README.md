@@ -40,4 +40,4 @@ Start with ticket AG-001 (project scaffolding) and work sequentially.
 
 ## Questions?
 
-Ping the team or strategic analysis in the Telegram group.
+Raise questions in the project group chat.
