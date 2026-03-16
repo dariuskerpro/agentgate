@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agentgate"
+version = "0.0.1"
+description = "AgentGate SDK — discover and call pay-per-call AI APIs"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = ["httpx>=0.27.0"]
+
+[project.optional-dependencies]
+langchain = ["langchain-core>=0.3.0"]
+crewai = ["crewai>=0.95.0"]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24", "respx>=0.22"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agentgate"]

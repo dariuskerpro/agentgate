@@ -1,0 +1,16 @@
+{
+  "name": "@agent-gate/docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "test": "echo 'docs: no tests'",
+    "lint": "echo 'docs: no lint'"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.34.0",
+    "astro": "^5.7.0",
+    "sharp": "^0.33.0"
+  }
+}

@@ -1,0 +1,15 @@
+# AgentGate
+> Monetize any API in 3 lines of code with x402 payments
+
+AgentGate lets developers add pay-per-call USDC payments to any API using the x402 protocol.
+
+## Docs
+- [Introduction](/getting-started/introduction)
+- [Quickstart for Sellers](/getting-started/sellers)
+- [Quickstart for Buyers](/getting-started/buyers)
+- [API Reference](/api/endpoints)
+
+## API
+- Discovery: GET https://api.text2ai.com/v1/discover
+- Categories: GET https://api.text2ai.com/v1/discover/categories
+- Fulfillment: POST https://fulfill.text2ai.com/v1/{endpoint}
