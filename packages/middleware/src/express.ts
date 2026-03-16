@@ -1,5 +1,5 @@
 /**
- * @agentgate/middleware — Express middleware
+ * @agent-gate/middleware — Express middleware
  *
  * Wraps x402 payment protection with AgentGate's value-add:
  * - Route-level USDC pricing

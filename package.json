@@ -1,5 +1,5 @@
 {
-  "name": "agentgate",
+  "name": "agent-gate",
   "version": "0.0.1",
   "private": true,
   "description": "x402 middleware & marketplace for AI agent API payments",

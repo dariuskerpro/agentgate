@@ -30,7 +30,7 @@ The CLI will:
 
 ```typescript
 import express from 'express';
-import { agentgate } from '@agentgate/middleware/express';
+import { agentgate } from '@agent-gate/middleware/express';
 
 const app = express();
 
@@ -56,7 +56,7 @@ app.listen(3000);
 
 ```typescript
 import { Hono } from 'hono';
-import { agentgate } from '@agentgate/middleware/hono';
+import { agentgate } from '@agent-gate/middleware/hono';
 
 const app = new Hono();
 
@@ -76,7 +76,7 @@ app.use('/api/*', agentgate({
 
 ```typescript
 // app/api/weather/route.ts
-import { withAgentGate } from '@agentgate/middleware/next';
+import { withAgentGate } from '@agent-gate/middleware/next';
 
 async function GET(request: Request) {
   return Response.json({ temp: 72 });

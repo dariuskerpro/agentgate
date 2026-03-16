@@ -1,7 +1,7 @@
 {
-  "name": "@agentgate/dashboard",
+  "name": "@agent-gate/dashboard",
   "version": "0.0.1",
-  "description": "AgentGate Seller Dashboard — Next.js",
+  "description": "AgentGate Seller Dashboard \u2014 Next.js",
   "license": "UNLICENSED",
   "private": true,
   "type": "module",

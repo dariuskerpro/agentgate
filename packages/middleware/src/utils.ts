@@ -1,5 +1,5 @@
 /**
- * Shared utilities for @agentgate/middleware
+ * Shared utilities for @agent-gate/middleware
  * Used by Express, Hono, and Next.js middleware implementations.
  */
 

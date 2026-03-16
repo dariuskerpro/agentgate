@@ -1,5 +1,5 @@
 {
-  "name": "@agentgate/marketplace-api",
+  "name": "@agent-gate/marketplace-api",
   "version": "0.0.1",
   "description": "AgentGate Marketplace API",
   "license": "UNLICENSED",
@@ -17,7 +17,7 @@
     "db:seed": "tsx src/db/seed.ts"
   },
   "devDependencies": {
-    "@agentgate/middleware": "workspace:*",
+    "@agent-gate/middleware": "workspace:*",
     "@types/express": "^5.0.6",
     "drizzle-kit": "^0.31.9",
     "drizzle-orm": "^0.45.1",

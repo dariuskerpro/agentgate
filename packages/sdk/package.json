@@ -1,7 +1,7 @@
 {
-  "name": "@agentgate/sdk",
+  "name": "@agent-gate/sdk",
   "version": "0.0.1",
-  "description": "AgentGate SDK — discover and pay for AI agent services",
+  "description": "AgentGate SDK \u2014 discover and pay for AI agent services",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",

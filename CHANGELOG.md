@@ -49,7 +49,7 @@
   - marketplace-api → Cloudflare Workers (wrangler)
   - dashboard → Vercel
   - web → Vercel
-- **Publish workflow** (.github/workflows/publish.yml): npm publish @agentgate/middleware and CLI on version tags (v*)
+- **Publish workflow** (.github/workflows/publish.yml): npm publish @agent-gate/middleware and CLI on version tags (v*)
 - **wrangler.toml** in apps/marketplace-api/ for Cloudflare Workers + D1 config
 - Updated .gitignore with .next/, .wrangler/ entries
 - Added typecheck, deploy scripts to root package.json
@@ -106,7 +106,7 @@
 - TypeScript 5.x throughout all packages/apps
 - Vitest for testing, Biome for linting/formatting
 - turbo.json with build, test, lint, dev, clean pipelines
-- Packages: `@agentgate/middleware`, `agentgate` (CLI stub), `@agentgate/sdk` (stub)
+- Packages: `@agent-gate/middleware`, `agentgate` (CLI stub), `@agent-gate/sdk` (stub)
 - Apps: `marketplace-api` (stub), `dashboard` (stub), `web` (stub)
 - All packages compile and test successfully from root
 
@@ -128,7 +128,7 @@
 - Feature parity with Express middleware (402 responses, analytics, graceful degradation)
 - Cloudflare Workers compatible — no Node.js-specific APIs
 - Typed without requiring Hono as a runtime dependency (optional peer dep)
-- Exported from `@agentgate/middleware/hono`
+- Exported from `@agent-gate/middleware/hono`
 
 ### AG-004: Next.js Middleware
 - TDD: 11 tests written first (red), then implementation (green)
@@ -137,7 +137,7 @@
 - Async analytics events fire on settled payments
 - Config validation at init: wallet required, valid price required
 - Works with async handler functions
-- Exported from `@agentgate/middleware/next`
+- Exported from `@agent-gate/middleware/next`
 
 ### AG-002: Express Middleware
 - TDD: 18 tests written first (red), then implementation (green)
@@ -148,4 +148,4 @@
 - Graceful degradation: analytics failures never block payment flow
 - Config validation at init: wallet required, routes required + non-empty
 - `parsePrice()` utility: handles `$0.001` and `0.001` formats, rejects invalid/negative
-- Exported from both `@agentgate/middleware` and `@agentgate/middleware/express`
+- Exported from both `@agent-gate/middleware` and `@agent-gate/middleware/express`

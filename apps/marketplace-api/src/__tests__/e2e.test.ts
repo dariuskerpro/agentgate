@@ -10,7 +10,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { createApp } from "../app.js";
 import { createMockRepositories } from "../repositories/mock.js";
 import express from "express";
-import { agentgate } from "@agentgate/middleware/express";
+import { agentgate } from "@agent-gate/middleware/express";
 
 // ── Helpers ────────────────────────────────────────────────────────
 

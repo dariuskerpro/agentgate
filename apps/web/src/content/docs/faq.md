@@ -83,7 +83,7 @@ Base (Ethereum L2). Network ID: `eip155:8453` for mainnet, `eip155:84532` for Se
 
 ### Is the middleware open source?
 
-Yes. `@agentgate/middleware` is MIT licensed. The marketplace API and dashboard are proprietary.
+Yes. `@agent-gate/middleware` is MIT licensed. The marketplace API and dashboard are proprietary.
 
 ### How does health monitoring work?
 

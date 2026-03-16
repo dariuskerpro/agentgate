@@ -13,7 +13,7 @@ Agent (buyer)                    Developer (seller)
     ▼                                ▼
 ┌──────────────┐            ┌──────────────────┐
 │ Marketplace  │            │ Seller's API     │
-│ API          │◄───────────│ + @agentgate/    │
+│ API          │◄───────────│ + @agent-gate/    │
 │ (Hono on CF) │  register  │   middleware     │
 └──────┬───────┘            └───────┬──────────┘
        │                            │
@@ -31,7 +31,7 @@ Agent (buyer)                    Developer (seller)
 
 ## Components
 
-### 1. Middleware (`@agentgate/middleware`)
+### 1. Middleware (`@agent-gate/middleware`)
 
 A lightweight wrapper around the x402 payment protocol. When installed in a seller's API:
 

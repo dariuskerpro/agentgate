@@ -1,5 +1,5 @@
 {
-  "name": "@agentgate/middleware",
+  "name": "@agent-gate/middleware",
   "version": "0.0.1",
   "description": "x402 middleware for AI agent API payments",
   "license": "MIT",
@@ -24,7 +24,9 @@
       "import": "./dist/next.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "vitest run",

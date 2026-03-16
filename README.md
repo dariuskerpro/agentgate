@@ -66,9 +66,9 @@ Scans your project for API routes, auto-generates x402 middleware config, sugges
 ```
 agentgate/
 ├── packages/
-│   ├── middleware-express/   # @agentgate/middleware-express
-│   ├── middleware-hono/      # @agentgate/middleware-hono
-│   ├── middleware-next/      # @agentgate/middleware-next
+│   ├── middleware-express/   # @agent-gate/middleware-express
+│   ├── middleware-hono/      # @agent-gate/middleware-hono
+│   ├── middleware-next/      # @agent-gate/middleware-next
 │   ├── cli/                  # npx agentgate init
 │   ├── db/                   # Database schema (Drizzle ORM)
 │   └── shared/               # Shared types & utilities

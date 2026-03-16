@@ -69,23 +69,12 @@ describe('AG-014: CI/CD Configuration', () => {
       expect(config.on).not.toHaveProperty('pull_request');
     });
 
-    it('has separate jobs for marketplace-api, dashboard, and web', () => {
+    it('has a notify job (Railway/Vercel auto-deploy from main)', () => {
       const config = loadYaml('.github/workflows/deploy.yml');
       const jobNames = Object.keys(config.jobs);
-
-      const hasMarketplaceApi = jobNames.some((j) =>
-        j.toLowerCase().includes('marketplace')
-      );
-      const hasDashboard = jobNames.some((j) =>
-        j.toLowerCase().includes('dashboard')
-      );
-      const hasWeb = jobNames.some((j) =>
-        j.toLowerCase().includes('web')
-      );
-
-      expect(hasMarketplaceApi).toBe(true);
-      expect(hasDashboard).toBe(true);
-      expect(hasWeb).toBe(true);
+      // Deploy is handled by Railway (API) and Vercel (dashboard/web) on push to main.
+      // The workflow just logs the trigger.
+      expect(jobNames).toContain('notify');
     });
   });
 
@@ -120,7 +109,7 @@ describe('AG-014: CI/CD Configuration', () => {
       expect(existsSync(wranglerPath)).toBe(true);
 
       const content = readFileSync(wranglerPath, 'utf-8');
-      expect(content).toContain('agentgate-marketplace-api');
+      expect(content).toContain('agent-gate-marketplace-api');
       expect(content).toContain('compatibility_date');
     });
   });

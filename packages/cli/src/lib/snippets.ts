@@ -6,7 +6,7 @@ import type { Framework } from './detect.js';
 
 const SNIPPETS: Record<Framework, string> = {
   express: `import express from 'express';
-import { agentgate } from '@agentgate/middleware/express';
+import { agentgate } from '@agent-gate/middleware/express';
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(agentgate());
 // Your routes below...`,
 
   hono: `import { Hono } from 'hono';
-import { agentgate } from '@agentgate/middleware/hono';
+import { agentgate } from '@agent-gate/middleware/hono';
 
 const app = new Hono();
 
@@ -26,7 +26,7 @@ app.use('/*', agentgate());
 // Your routes below...`,
 
   next: `// app/api/your-route/route.ts
-import { withAgentGate } from '@agentgate/middleware/next';
+import { withAgentGate } from '@agent-gate/middleware/next';
 
 async function GET(request: Request) {
   return Response.json({ /* your data */ });

@@ -67,7 +67,7 @@ importers:
         specifier: ^17.3.1
         version: 17.3.1
     devDependencies:
-      '@agentgate/middleware':
+      '@agent-gate/middleware':
         specifier: workspace:*
         version: link:../../packages/middleware
       '@types/express':

@@ -52,4 +52,4 @@ jobs:
       - name: Run integration tests
         env:
           DATABASE_URL: postgres://agentgate:agentgate@localhost:5432/agentgate_test
-        run: pnpm --filter @agentgate/marketplace-api test
+        run: pnpm --filter @agent-gate/marketplace-api test

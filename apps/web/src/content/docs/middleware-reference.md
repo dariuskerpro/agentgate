@@ -1,13 +1,13 @@
 # Middleware Reference
 
-AgentGate provides middleware for Express, Hono, and Next.js. All middleware packages are exported from `@agentgate/middleware`.
+AgentGate provides middleware for Express, Hono, and Next.js. All middleware packages are exported from `@agent-gate/middleware`.
 
 ## Installation
 
 ```bash
-npm install @agentgate/middleware
+npm install @agent-gate/middleware
 # or
-pnpm add @agentgate/middleware
+pnpm add @agent-gate/middleware
 ```
 
 ## Common Configuration
@@ -56,9 +56,9 @@ interface RouteConfig {
 ## Express
 
 ```typescript
-import { agentgate } from '@agentgate/middleware/express';
+import { agentgate } from '@agent-gate/middleware/express';
 // or
-import { agentgate } from '@agentgate/middleware';
+import { agentgate } from '@agent-gate/middleware';
 
 const app = express();
 
@@ -89,7 +89,7 @@ app.use(agentgate({
 ## Hono
 
 ```typescript
-import { agentgate } from '@agentgate/middleware/hono';
+import { agentgate } from '@agent-gate/middleware/hono';
 
 const app = new Hono();
 
@@ -113,7 +113,7 @@ app.use('/api/*', agentgate({
 ## Next.js (App Router)
 
 ```typescript
-import { withAgentGate } from '@agentgate/middleware/next';
+import { withAgentGate } from '@agent-gate/middleware/next';
 
 // Per-route handler wrapping
 async function GET(request: Request) {

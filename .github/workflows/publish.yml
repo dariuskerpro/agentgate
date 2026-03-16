@@ -24,11 +24,11 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - name: Publish @agentgate/middleware
-        run: pnpm publish --filter=@agentgate/middleware --access public --no-git-checks
+      - name: Publish @agent-gate/middleware
+        run: pnpm publish --filter=@agent-gate/middleware --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish agentgate (CLI)
-        run: pnpm publish --filter=agentgate --access public --no-git-checks
+        run: pnpm publish --filter=agent-gate --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -103,19 +103,19 @@ describe('parseRoutePrice()', () => {
 describe('generateMiddlewareSnippet()', () => {
   it('generates Express import/usage code', () => {
     const snippet = generateMiddlewareSnippet('express');
-    expect(snippet).toContain("import { agentgate } from '@agentgate/middleware/express'");
+    expect(snippet).toContain("import { agentgate } from '@agent-gate/middleware/express'");
     expect(snippet).toContain('app.use(agentgate())');
   });
 
   it('generates Hono import/usage code', () => {
     const snippet = generateMiddlewareSnippet('hono');
-    expect(snippet).toContain("import { agentgate } from '@agentgate/middleware/hono'");
+    expect(snippet).toContain("import { agentgate } from '@agent-gate/middleware/hono'");
     expect(snippet).toContain("app.use('/*', agentgate())");
   });
 
   it('generates Next.js import/usage code', () => {
     const snippet = generateMiddlewareSnippet('next');
-    expect(snippet).toContain("import { withAgentGate } from '@agentgate/middleware/next'");
+    expect(snippet).toContain("import { withAgentGate } from '@agent-gate/middleware/next'");
     expect(snippet).toContain('withAgentGate');
   });
 });

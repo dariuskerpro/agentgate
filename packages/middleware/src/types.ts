@@ -1,5 +1,5 @@
 /**
- * Shared types for @agentgate/middleware
+ * Shared types for @agent-gate/middleware
  * Used by Express, Hono, and Next.js middleware implementations.
  */
 

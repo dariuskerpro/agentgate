@@ -1,5 +1,5 @@
 /**
- * @agentgate/middleware — Hono middleware
+ * @agent-gate/middleware — Hono middleware
  *
  * Wraps x402 payment protection for Hono framework.
  * Works on Cloudflare Workers (no Node.js-specific APIs).
@@ -7,7 +7,7 @@
  * Usage:
  * ```ts
  * import { Hono } from 'hono';
- * import { agentgate } from '@agentgate/middleware/hono';
+ * import { agentgate } from '@agent-gate/middleware/hono';
  *
  * const app = new Hono();
  * app.use('/api/*', agentgate({
