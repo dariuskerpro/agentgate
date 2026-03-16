@@ -93,9 +93,9 @@ async function seed() {
       seller_id: codesmith.id,
       url: "https://api.codesmith.ai/v1/code-review",
       method: "POST",
-      description: "Full codebase review — security audit, performance, and architecture feedback",
+      description: "Code review — security, performance, and architecture feedback (up to 100K chars)",
       category: "code",
-      price_usdc: "0.040",
+      price_usdc: "0.050",
     },
     {
       seller_id: codesmith.id,

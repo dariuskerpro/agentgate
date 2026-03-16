@@ -81,7 +81,7 @@ if (USE_PAYMENTS && (SELLER_WALLET || SELLER_WALLET_SOL)) {
   const routes = {
     "POST /v1/code-review": {
       accepts: acceptsOptions.length === 1 ? acceptsOptions[0] : acceptsOptions,
-      description: "Full codebase review — security audit, performance, and architecture feedback",
+      description: "Code review — security, performance, and architecture feedback (up to 100K chars)",
     },
     "POST /v1/transcript-to-prd": {
       accepts: acceptsOptionsPrd.length === 1 ? acceptsOptionsPrd[0] : acceptsOptionsPrd,

@@ -16,9 +16,9 @@ const LIVE_ENDPOINTS = new Set(["/v1/code-review", "/v1/transcript-to-prd"]);
 const EXAMPLE_BODIES: Record<string, string> = {
   "/v1/code-review": JSON.stringify(
     {
-      code: 'app.get("/users", (req, res) => {\n  const id = req.query.id;\n  db.query("SELECT * FROM users WHERE id = " + id);\n});',
+      code: "function add(a, b) { return a + b; }",
       language: "javascript",
-      focus: "security",
+      focus: "all",
     },
     null,
     2,
