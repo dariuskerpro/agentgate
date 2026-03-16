@@ -1,5 +1,6 @@
 import React from "react";
 import { Footer } from "../../components/footer";
+import { MarketplaceCard } from "../../components/marketplace-card";
 
 const API_URL = "https://api.text2ai.com";
 
@@ -18,6 +19,8 @@ interface Category {
   category: string;
   count: number;
 }
+
+const LIVE_ENDPOINTS = new Set(["/v1/code-review", "/v1/transcript-to-prd"]);
 
 async function getEndpoints(): Promise<Endpoint[]> {
   try {
@@ -45,13 +48,6 @@ async function getCategories(): Promise<Category[]> {
   }
 }
 
-function formatPrice(priceUsdc: string): string {
-  const num = parseFloat(priceUsdc);
-  if (num < 0.01) return `$${num.toFixed(4)}`;
-  if (num < 1) return `$${num.toFixed(3)}`;
-  return `$${num.toFixed(2)}`;
-}
-
 function getCategoryIcon(category: string): string {
   const icons: Record<string, string> = {
     audio: "🎙️",
@@ -63,48 +59,6 @@ function getCategoryIcon(category: string): string {
   return icons[category.toLowerCase()] ?? "⚡";
 }
 
-// These endpoints are actually live and functional
-const LIVE_ENDPOINTS = new Set([
-  "/v1/code-review",
-  "/v1/transcript-to-prd",
-]);
-
-function getStatusBadge(url: string) {
-  const path = new URL(url).pathname;
-  if (LIVE_ENDPOINTS.has(path)) {
-    return (
-      <span
-        style={{
-          color: "#22c55e",
-          background: "rgba(34, 197, 94, 0.15)",
-          padding: "0.2rem 0.5rem",
-          borderRadius: "4px",
-          fontSize: "0.6875rem",
-          fontFamily: "var(--font-mono)",
-          fontWeight: 600,
-        }}
-      >
-        ● Live
-      </span>
-    );
-  }
-  return (
-    <span
-      style={{
-        color: "#eab308",
-        background: "rgba(234, 179, 8, 0.12)",
-        padding: "0.2rem 0.5rem",
-        borderRadius: "4px",
-        fontSize: "0.6875rem",
-        fontFamily: "var(--font-mono)",
-        fontWeight: 500,
-      }}
-    >
-      Open to Claim
-    </span>
-  );
-}
-
 export default async function MarketplacePage() {
   const [endpoints, categories] = await Promise.all([
     getEndpoints(),
@@ -113,6 +67,12 @@ export default async function MarketplacePage() {
 
   const totalEndpoints = endpoints.length;
   const totalCategories = categories.length;
+
+  const sorted = [...endpoints].sort((a, b) => {
+    const aLive = LIVE_ENDPOINTS.has(new URL(a.url).pathname) ? 0 : 1;
+    const bLive = LIVE_ENDPOINTS.has(new URL(b.url).pathname) ? 0 : 1;
+    return aLive - bLive;
+  });
 
   return (
     <main className="grid-bg">
@@ -143,10 +103,19 @@ export default async function MarketplacePage() {
             </h1>
             <p
               className="section-subtitle"
-              style={{ textAlign: "center", marginBottom: "2rem" }}
+              style={{ textAlign: "center", marginBottom: "1rem" }}
             >
               {totalEndpoints} endpoints across {totalCategories} categories.
               Pay per call with USDC on Base &amp; Solana.
+            </p>
+            <p
+              style={{
+                color: "var(--color-text-dim)",
+                fontSize: "0.875rem",
+                marginBottom: "2rem",
+              }}
+            >
+              Click any endpoint to see an example API call.
             </p>
 
             <div
@@ -187,65 +156,8 @@ export default async function MarketplacePage() {
           </div>
 
           <div className="marketplace-grid">
-            {[...endpoints].sort((a, b) => {
-              const aLive = LIVE_ENDPOINTS.has(new URL(a.url).pathname) ? 0 : 1;
-              const bLive = LIVE_ENDPOINTS.has(new URL(b.url).pathname) ? 0 : 1;
-              return aLive - bLive;
-            }).map((ep) => (
-              <div key={ep.id} className="marketplace-card">
-                <div className="marketplace-card-header">
-                  <span className="marketplace-card-category">
-                    {getCategoryIcon(ep.category)} {ep.category}
-                  </span>
-                  {getStatusBadge(ep.url)}
-                </div>
-                <h3 className="marketplace-card-name">{ep.description}</h3>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    marginTop: "0.5rem",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <code
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.75rem",
-                      color: "var(--color-text-dim)",
-                      background: "var(--color-code-bg)",
-                      padding: "0.15rem 0.4rem",
-                      borderRadius: "4px",
-                    }}
-                  >
-                    {ep.method}
-                  </code>
-                  <code
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.75rem",
-                      color: "var(--color-text-dim)",
-                    }}
-                  >
-                    {new URL(ep.url).pathname}
-                  </code>
-                </div>
-                <div className="marketplace-card-footer">
-                  <span className="marketplace-card-price">
-                    {formatPrice(ep.price_usdc)}/call
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.6875rem",
-                      color: "var(--color-text-dim)",
-                    }}
-                  >
-                    USDC · Base & Solana
-                  </span>
-                </div>
-              </div>
+            {sorted.map((ep) => (
+              <MarketplaceCard key={ep.id} ep={ep} />
             ))}
           </div>
 
