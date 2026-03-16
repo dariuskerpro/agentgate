@@ -1,7 +1,7 @@
 {
   "name": "@agent-gate/fulfillment-api",
   "version": "0.0.1",
-  "description": "AgentGate Fulfillment API — AI-powered code review & transcript-to-PRD endpoints",
+  "description": "AgentGate Fulfillment API \u2014 AI-powered code review & transcript-to-PRD endpoints",
   "license": "UNLICENSED",
   "private": true,
   "type": "module",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "tsx": "^4.19.0",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "typescript": "^5.8.0"
   }
 }

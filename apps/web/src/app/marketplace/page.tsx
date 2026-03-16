@@ -63,8 +63,15 @@ function getCategoryIcon(category: string): string {
   return icons[category.toLowerCase()] ?? "⚡";
 }
 
-function getStatusBadge(active: boolean) {
-  if (active) {
+// These endpoints are actually live and functional
+const LIVE_ENDPOINTS = new Set([
+  "/v1/code-review",
+  "/v1/transcript-to-prd",
+]);
+
+function getStatusBadge(url: string) {
+  const path = new URL(url).pathname;
+  if (LIVE_ENDPOINTS.has(path)) {
     return (
       <span
         style={{
@@ -84,15 +91,16 @@ function getStatusBadge(active: boolean) {
   return (
     <span
       style={{
-        color: "var(--color-text-dim)",
-        background: "rgba(113, 113, 122, 0.15)",
+        color: "#eab308",
+        background: "rgba(234, 179, 8, 0.12)",
         padding: "0.2rem 0.5rem",
         borderRadius: "4px",
         fontSize: "0.6875rem",
         fontFamily: "var(--font-mono)",
+        fontWeight: 500,
       }}
     >
-      Coming Soon
+      Open to Claim
     </span>
   );
 }
@@ -179,13 +187,17 @@ export default async function MarketplacePage() {
           </div>
 
           <div className="marketplace-grid">
-            {endpoints.map((ep) => (
+            {[...endpoints].sort((a, b) => {
+              const aLive = LIVE_ENDPOINTS.has(new URL(a.url).pathname) ? 0 : 1;
+              const bLive = LIVE_ENDPOINTS.has(new URL(b.url).pathname) ? 0 : 1;
+              return aLive - bLive;
+            }).map((ep) => (
               <div key={ep.id} className="marketplace-card">
                 <div className="marketplace-card-header">
                   <span className="marketplace-card-category">
                     {getCategoryIcon(ep.category)} {ep.category}
                   </span>
-                  {getStatusBadge(ep.active)}
+                  {getStatusBadge(ep.url)}
                 </div>
                 <h3 className="marketplace-card-name">{ep.description}</h3>
                 <div
