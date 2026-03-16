@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Copy package files for install
 COPY package.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copy source and tsconfig
 COPY tsconfig.json ./
@@ -22,7 +22,7 @@ ENV PORT=4022
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
-RUN npm install --omit=dev
+RUN npm install --omit=dev --legacy-peer-deps
 
 EXPOSE 4022
 CMD ["node", "dist/index.js"]
