@@ -12,6 +12,9 @@ import { handleUrlMetadata } from "./handlers/url-metadata.js";
 import { handlePhoneValidate } from "./handlers/phone-validate.js";
 import { handleCryptoPrice } from "./handlers/crypto-price.js";
 import { handleIpGeolocate } from "./handlers/ip-geolocate.js";
+import { handleScrapeEnrich } from "./handlers/scrape-enrich.js";
+import { handleTranscribe } from "./handlers/transcribe.js";
+import { handlePdfExtract } from "./handlers/pdf-extract.js";
 
 const SELLER_WALLET = process.env.SELLER_WALLET || "";
 const SELLER_WALLET_SOL = process.env.SELLER_WALLET_SOL || "";
@@ -131,6 +134,19 @@ if (USE_PAYMENTS && (SELLER_WALLET || SELLER_WALLET_SOL)) {
       accepts: buildAccepts("$0.0002"),
       description: "IP geolocation — country, city, ISP, coordinates, timezone",
     },
+    // --- New AI endpoints ---
+    "POST /v1/transcribe": {
+      accepts: buildAccepts("$0.015"),
+      description: "Audio transcription — speech-to-text with timestamps, segments, and language detection",
+    },
+    "POST /v1/scrape-enrich": {
+      accepts: buildAccepts("$0.012"),
+      description: "URL scraping and enrichment — fetch, extract, and optionally structure content with AI",
+    },
+    "POST /v1/pdf-extract": {
+      accepts: buildAccepts("$0.02"),
+      description: "PDF extraction — text, tables, and key-value pairs from PDF documents via Gemini",
+    },
   };
 
   // Register scheme servers for both chains
@@ -176,6 +192,10 @@ app.post("/v1/url-metadata", handleUrlMetadata);
 app.post("/v1/phone-validate", handlePhoneValidate);
 app.post("/v1/crypto-price", handleCryptoPrice);
 app.post("/v1/ip-geolocate", handleIpGeolocate);
+app.post("/v1/scrape-enrich", handleScrapeEnrich);
+// New AI endpoints
+app.post("/v1/transcribe", handleTranscribe);
+app.post("/v1/pdf-extract", handlePdfExtract);
 
 // 404 fallback
 app.notFound((c) => c.json({ error: "Not found" }, 404));
