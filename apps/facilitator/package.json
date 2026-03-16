@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@scure/base": "^1.2.0",
-    "@solana/kit": "^2.1.0",
+    "@solana/kit": "^6.1.0",
     "@x402/core": "^2.7.0",
     "@x402/evm": "^2.7.0",
     "@x402/svm": "^2.7.0",
