@@ -5,7 +5,7 @@ title: Discovery API
 description: Find and browse available endpoints programmatically
 ---
 
-The Discovery API is hosted at `api.text2ai.com` and requires no authentication. Use it to browse available endpoints, filter by category, and search by keyword.
+The Discovery API is hosted at `api.agentgate.online` and requires no authentication. Use it to browse available endpoints, filter by category, and search by keyword.
 
 ## GET /v1/discover
 
@@ -24,7 +24,7 @@ Search and browse active endpoints.
 ### Example: List all endpoints
 
 ```bash
-curl "https://api.text2ai.com/v1/discover"
+curl "https://api.agentgate.online/v1/discover"
 ```
 
 **Response:**
@@ -34,7 +34,7 @@ curl "https://api.text2ai.com/v1/discover"
   "endpoints": [
     {
       "id": "ep_abc123",
-      "url": "https://fulfill.text2ai.com/v1/code-review",
+      "url": "https://fulfill.agentgate.online/v1/code-review",
       "method": "POST",
       "description": "Code review — security, performance, and architecture feedback (up to 100K chars)",
       "category": "code",
@@ -43,7 +43,7 @@ curl "https://api.text2ai.com/v1/discover"
     },
     {
       "id": "ep_def456",
-      "url": "https://fulfill.text2ai.com/v1/email-validate",
+      "url": "https://fulfill.agentgate.online/v1/email-validate",
       "method": "POST",
       "description": "Email validation — format check, MX lookup, deliverability assessment",
       "category": "utility",
@@ -60,19 +60,19 @@ curl "https://api.text2ai.com/v1/discover"
 ### Example: Filter by category
 
 ```bash
-curl "https://api.text2ai.com/v1/discover?category=code"
+curl "https://api.agentgate.online/v1/discover?category=code"
 ```
 
 ### Example: Search by keyword
 
 ```bash
-curl "https://api.text2ai.com/v1/discover?q=pdf"
+curl "https://api.agentgate.online/v1/discover?q=pdf"
 ```
 
 ### Example: Sort by price, paginated
 
 ```bash
-curl "https://api.text2ai.com/v1/discover?sort=price&limit=5&offset=0"
+curl "https://api.agentgate.online/v1/discover?sort=price&limit=5&offset=0"
 ```
 
 ---
@@ -82,7 +82,7 @@ curl "https://api.text2ai.com/v1/discover?sort=price&limit=5&offset=0"
 List all categories with endpoint counts.
 
 ```bash
-curl "https://api.text2ai.com/v1/discover/categories"
+curl "https://api.agentgate.online/v1/discover/categories"
 ```
 
 **Response:**
@@ -106,7 +106,7 @@ curl "https://api.text2ai.com/v1/discover/categories"
 Get details for a specific endpoint by ID.
 
 ```bash
-curl "https://api.text2ai.com/v1/discover/ep_abc123"
+curl "https://api.agentgate.online/v1/discover/ep_abc123"
 ```
 
 **Response:**
@@ -114,7 +114,7 @@ curl "https://api.text2ai.com/v1/discover/ep_abc123"
 ```json
 {
   "id": "ep_abc123",
-  "url": "https://fulfill.text2ai.com/v1/code-review",
+  "url": "https://fulfill.agentgate.online/v1/code-review",
   "method": "POST",
   "description": "Code review — security, performance, and architecture feedback (up to 100K chars)",
   "category": "code",

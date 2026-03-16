@@ -18,8 +18,8 @@ class AgentGateClient:
 
     def __init__(
         self,
-        api_url: str = "https://api.text2ai.com",
-        fulfill_url: str = "https://fulfill.text2ai.com",
+        api_url: str = "https://api.agentgate.online",
+        fulfill_url: str = "https://fulfill.agentgate.online",
         timeout: float = 30.0,
         http_client: httpx.Client | None = None,
     ) -> None:

@@ -143,7 +143,7 @@ export function MarketplaceCard({ ep }: { ep: Endpoint }) {
   const isLive = LIVE_ENDPOINTS.has(path);
   const exampleBody = EXAMPLE_BODIES[path] ?? JSON.stringify({ input: "your data here" }, null, 2);
   const isMultipart = exampleBody.startsWith("#");
-  const fulfillUrl = `https://fulfill.text2ai.com${path}`;
+  const fulfillUrl = `https://fulfill.agentgate.online${path}`;
 
   const curlCommand = isMultipart
     ? exampleBody.replace("{URL}", fulfillUrl)

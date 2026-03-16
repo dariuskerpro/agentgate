@@ -5,9 +5,9 @@
 /* ------------------------------------------------------------------ */
 
 export interface AgentGateConfig {
-  /** API base URL (default: "https://api.text2ai.com") */
+  /** API base URL (default: "https://api.agentgate.online") */
   apiUrl?: string;
-  /** Fulfillment API base URL (default: "https://fulfill.text2ai.com") */
+  /** Fulfillment API base URL (default: "https://fulfill.agentgate.online") */
   fulfillUrl?: string;
   /** Custom fetch implementation */
   fetch?: typeof fetch;
@@ -62,8 +62,8 @@ export interface CallResult<T = unknown> {
 /*  Client                                                             */
 /* ------------------------------------------------------------------ */
 
-const DEFAULT_API_URL = "https://api.text2ai.com";
-const DEFAULT_FULFILL_URL = "https://fulfill.text2ai.com";
+const DEFAULT_API_URL = "https://api.agentgate.online";
+const DEFAULT_FULFILL_URL = "https://fulfill.agentgate.online";
 const DEFAULT_TIMEOUT = 30_000;
 
 export class AgentGateClient {

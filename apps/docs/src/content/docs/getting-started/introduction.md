@@ -38,8 +38,8 @@ AgentGate has four main components:
 
 | Component | URL | Purpose |
 |-----------|-----|---------|
-| Marketplace API | `api.text2ai.com` | Endpoint discovery, seller registration, analytics |
-| Fulfillment API | `fulfill.text2ai.com` | Hosts the actual endpoints behind x402 paywalls |
+| Marketplace API | `api.agentgate.online` | Endpoint discovery, seller registration, analytics |
+| Fulfillment API | `fulfill.agentgate.online` | Hosts the actual endpoints behind x402 paywalls |
 | Facilitator | `x402.org/facilitator` | Verifies and settles USDC payments on-chain |
 | Web | `agentgate.ai` | Landing page and seller dashboard |
 

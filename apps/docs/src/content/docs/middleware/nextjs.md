@@ -108,7 +108,7 @@ export const POST = withAgentGate(summarize, {
   category: "ai",
   marketplace: {
     apiKey: process.env.AGENTGATE_API_KEY!,
-    baseUrl: "https://api.text2ai.com",
+    baseUrl: "https://api.agentgate.online",
   },
 });
 ```

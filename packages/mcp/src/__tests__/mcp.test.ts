@@ -51,7 +51,7 @@ describe("handleDiscover", () => {
   it("calls the discover API and returns formatted results", async () => {
     const mockData = [
       {
-        url: "https://api.text2ai.com/v1/chat",
+        url: "https://api.agentgate.online/v1/chat",
         description: "Chat completion",
         price: "0.001",
         category: "llm",

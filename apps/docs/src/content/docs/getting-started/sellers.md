@@ -143,7 +143,7 @@ app.use(
     wallet: "0xYOUR_WALLET_ADDRESS",
     marketplace: {
       apiKey: "ag_your_key",
-      baseUrl: "https://api.text2ai.com",
+      baseUrl: "https://api.agentgate.online",
     },
     routes: {
       // ...

@@ -2,7 +2,7 @@ import React from "react";
 import { Footer } from "../../components/footer";
 import { MarketplaceCard } from "../../components/marketplace-card";
 
-const API_URL = "https://api.text2ai.com";
+const API_URL = "https://api.agentgate.online";
 
 interface Endpoint {
   id: string;

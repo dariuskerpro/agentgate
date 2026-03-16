@@ -5,7 +5,7 @@ title: Live Endpoints
 description: All available pay-per-call endpoints with prices and examples
 ---
 
-All endpoints are hosted at `fulfill.text2ai.com` and protected by x402 payments. Every endpoint accepts both Base (EVM) and Solana USDC.
+All endpoints are hosted at `fulfill.agentgate.online` and protected by x402 payments. Every endpoint accepts both Base (EVM) and Solana USDC.
 
 ## Endpoint overview
 
@@ -34,7 +34,7 @@ Validate an email address — format check, MX record lookup, deliverability ass
 **Price:** $0.0003
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/email-validate \
+curl -X POST https://fulfill.agentgate.online/v1/email-validate \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"email": "user@example.com"}'
@@ -59,7 +59,7 @@ Look up DNS records — A, AAAA, MX, NS, TXT, CNAME, SOA.
 **Price:** $0.0003
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/dns-lookup \
+curl -X POST https://fulfill.agentgate.online/v1/dns-lookup \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"domain": "example.com", "types": ["A", "MX", "TXT"]}'
@@ -84,7 +84,7 @@ Validate and normalize phone numbers.
 **Price:** $0.0003
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/phone-validate \
+curl -X POST https://fulfill.agentgate.online/v1/phone-validate \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"phone": "+1 (555) 123-4567"}'
@@ -108,7 +108,7 @@ Get current cryptocurrency prices and market data.
 **Price:** $0.0001
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/crypto-price \
+curl -X POST https://fulfill.agentgate.online/v1/crypto-price \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"symbol": "ETH"}'
@@ -132,7 +132,7 @@ Geolocate an IP address — country, city, ISP, coordinates, timezone.
 **Price:** $0.0002
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/ip-geolocate \
+curl -X POST https://fulfill.agentgate.online/v1/ip-geolocate \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"ip": "8.8.8.8"}'
@@ -163,7 +163,7 @@ Extract metadata from any URL — title, description, Open Graph tags, Twitter c
 **Price:** $0.0005
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/url-metadata \
+curl -X POST https://fulfill.agentgate.online/v1/url-metadata \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"url": "https://github.com"}'
@@ -195,7 +195,7 @@ Scrape a URL and extract structured content, optionally enriched with AI.
 **Price:** $0.012
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/scrape-enrich \
+curl -X POST https://fulfill.agentgate.online/v1/scrape-enrich \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"url": "https://example.com/blog/post", "extract": true}'
@@ -231,7 +231,7 @@ AI-powered code review — security issues, performance problems, architecture f
 **Price:** $0.05
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/code-review \
+curl -X POST https://fulfill.agentgate.online/v1/code-review \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{
@@ -264,7 +264,7 @@ Convert a meeting transcript into a structured PRD with user stories, acceptance
 **Price:** $0.035
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/transcript-to-prd \
+curl -X POST https://fulfill.agentgate.online/v1/transcript-to-prd \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"transcript": "PM: We need to add search to the dashboard. It should support full-text search across all fields. Designer: Should we add filters too? PM: Yes, filters for date range and status..."}'
@@ -296,7 +296,7 @@ Transcribe audio to text with timestamps, segments, and language detection.
 **Price:** $0.015
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/transcribe \
+curl -X POST https://fulfill.agentgate.online/v1/transcribe \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"audio_url": "https://example.com/meeting.mp3"}'
@@ -326,7 +326,7 @@ Extract text, tables, and key-value pairs from PDF documents using Gemini.
 **Price:** $0.02
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/pdf-extract \
+curl -X POST https://fulfill.agentgate.online/v1/pdf-extract \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <payment>" \
   -d '{"pdf_url": "https://example.com/invoice.pdf"}'
@@ -360,7 +360,7 @@ curl -X POST https://fulfill.text2ai.com/v1/pdf-extract \
 All fulfillment instances expose a free health endpoint:
 
 ```bash
-curl https://fulfill.text2ai.com/health
+curl https://fulfill.agentgate.online/health
 ```
 
 ```json

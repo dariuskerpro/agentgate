@@ -2,7 +2,7 @@
  * Marketplace API client for seller registration and endpoint management
  */
 
-const DEFAULT_BASE_URL = 'https://api.text2ai.com';
+const DEFAULT_BASE_URL = 'https://api.agentgate.online';
 
 interface RawSellerResponse {
   id: string;

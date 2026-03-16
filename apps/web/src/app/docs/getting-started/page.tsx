@@ -246,13 +246,13 @@ app.listen(3000);`}</code>
             <div className="code-block">
               <pre>
                 <code>{`# List all endpoints
-curl https://api.text2ai.com/v1/discover
+curl https://api.agentgate.online/v1/discover
 
 # Filter by category
-curl https://api.text2ai.com/v1/discover?category=code
+curl https://api.agentgate.online/v1/discover?category=code
 
 # List categories
-curl https://api.text2ai.com/v1/discover/categories`}</code>
+curl https://api.agentgate.online/v1/discover/categories`}</code>
               </pre>
             </div>
           </div>

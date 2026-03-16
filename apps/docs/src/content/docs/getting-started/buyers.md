@@ -51,12 +51,12 @@ if (result.status === 200) {
 }
 ```
 
-The SDK hits the fulfillment API at `fulfill.text2ai.com` by default. Override with:
+The SDK hits the fulfillment API at `fulfill.agentgate.online` by default. Override with:
 
 ```ts
 const client = new AgentGateClient({
-  apiUrl: "https://api.text2ai.com",
-  fulfillUrl: "https://fulfill.text2ai.com",
+  apiUrl: "https://api.agentgate.online",
+  fulfillUrl: "https://fulfill.agentgate.online",
 });
 ```
 
@@ -113,7 +113,7 @@ You don't need the SDK. Any HTTP client works — you just need to handle the 40
 ### Step 1: Make the request
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/crypto-price \
+curl -X POST https://fulfill.agentgate.online/v1/crypto-price \
   -H "Content-Type: application/json" \
   -d '{"symbol": "ETH"}'
 ```
@@ -145,7 +145,7 @@ curl -X POST https://fulfill.text2ai.com/v1/crypto-price \
 Sign a USDC payment matching the requirements, then retry with the payment header:
 
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/crypto-price \
+curl -X POST https://fulfill.agentgate.online/v1/crypto-price \
   -H "Content-Type: application/json" \
   -H "X-402-Payment: <base64-encoded-signed-payment>" \
   -d '{"symbol": "ETH"}'

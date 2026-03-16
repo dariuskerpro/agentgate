@@ -109,7 +109,7 @@ app.use(
     network: "eip155:8453",
     marketplace: {
       apiKey: process.env.AGENTGATE_API_KEY!,
-      baseUrl: "https://api.text2ai.com",
+      baseUrl: "https://api.agentgate.online",
     },
     routes: {
       "POST /api/summarize": {

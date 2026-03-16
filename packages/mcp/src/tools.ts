@@ -1,4 +1,4 @@
-const API_BASE = process.env.AGENTGATE_API_URL || "https://api.text2ai.com";
+const API_BASE = process.env.AGENTGATE_API_URL || "https://api.agentgate.online";
 
 export const TOOL_DEFINITIONS = [
   {

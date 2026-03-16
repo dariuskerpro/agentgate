@@ -114,7 +114,7 @@ All endpoints accept USDC on **Base** and **Solana** via x402.
 
 **Try it:**
 ```bash
-curl -X POST https://fulfill.text2ai.com/v1/email-validate \
+curl -X POST https://fulfill.agentgate.online/v1/email-validate \
   -H "Content-Type: application/json" \
   -d '{"email": "test@gmail.com"}'
 # Returns 402 — payment required via x402
@@ -136,13 +136,13 @@ curl -X POST https://fulfill.text2ai.com/v1/email-validate \
 ┌─────────────┐     ┌──────────────────┐     ┌─────────────────┐
 │   Agent /    │────▶│  Marketplace API  │     │   Facilitator   │
 │   Developer  │     │  (Discovery)      │     │  (Payment       │
-│              │     │  api.text2ai.com  │     │   Verification) │
+│              │     │  api.agentgate.online  │     │   Verification) │
 │              │     └──────────────────┘     └────────┬────────┘
 │              │                                        │
 │              │     ┌──────────────────┐              │
 │              │────▶│  Fulfillment API  │◀─────────────┘
 │              │     │  (Endpoints)      │
-│              │     │  fulfill.text2ai  │
+│              │     │  fulfill.agentgate│
 │              │     └──────────────────┘
 └─────────────┘
 ```

@@ -49,7 +49,7 @@ AgentGate is a monorepo with five apps and four packages.
 
 ## Components
 
-### Marketplace API (`api.text2ai.com`)
+### Marketplace API (`api.agentgate.online`)
 
 The registry and discovery layer. Tracks sellers, endpoints, transactions, and health.
 
@@ -58,7 +58,7 @@ The registry and discovery layer. Tracks sellers, endpoints, transactions, and h
 - **Auth:** API key for sellers, public access for discovery
 - **Stack:** Hono on Node.js
 
-### Fulfillment API (`fulfill.text2ai.com`)
+### Fulfillment API (`fulfill.agentgate.online`)
 
 Hosts the actual paid endpoints. Each request goes through x402 payment verification before reaching the handler.
 

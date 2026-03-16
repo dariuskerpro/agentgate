@@ -73,7 +73,7 @@ app.use('/api/translate', paymentMiddleware({
             </div>
             <div className="hero-terminal-body">
               <pre style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "0.8rem", lineHeight: 1.7, color: "var(--color-text-muted)", whiteSpace: "pre-wrap", wordBreak: "break-all" }}>
-                <code>{`curl -X POST https://fulfill.text2ai.com/v1/email-validate \\
+                <code>{`curl -X POST https://fulfill.agentgate.online/v1/email-validate \\
   -H "Content-Type: application/json" \\
   -d '{"email": "test@gmail.com"}'`}</code>
               </pre>

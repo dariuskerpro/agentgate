@@ -10,6 +10,6 @@ AgentGate lets developers add pay-per-call USDC payments to any API using the x4
 - [API Reference](/api/endpoints)
 
 ## API
-- Discovery: GET https://api.text2ai.com/v1/discover
-- Categories: GET https://api.text2ai.com/v1/discover/categories
-- Fulfillment: POST https://fulfill.text2ai.com/v1/{endpoint}
+- Discovery: GET https://api.agentgate.online/v1/discover
+- Categories: GET https://api.agentgate.online/v1/discover/categories
+- Fulfillment: POST https://fulfill.agentgate.online/v1/{endpoint}

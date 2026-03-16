@@ -10,8 +10,8 @@ import respx
 from agentgate.client import AgentGateClient
 from agentgate.crewai_tool import AgentGateCallCrewTool, AgentGateDiscoverCrewTool
 
-API_URL = "https://api.text2ai.com"
-FULFILL_URL = "https://fulfill.text2ai.com"
+API_URL = "https://api.agentgate.online"
+FULFILL_URL = "https://fulfill.agentgate.online"
 
 SAMPLE_ENDPOINTS = [
     {

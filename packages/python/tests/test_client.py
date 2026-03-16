@@ -6,8 +6,8 @@ import respx
 
 from agentgate.client import AgentGateClient
 
-API_URL = "https://api.text2ai.com"
-FULFILL_URL = "https://fulfill.text2ai.com"
+API_URL = "https://api.agentgate.online"
+FULFILL_URL = "https://fulfill.agentgate.online"
 
 SAMPLE_ENDPOINTS = [
     {
