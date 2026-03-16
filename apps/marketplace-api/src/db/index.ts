@@ -24,11 +24,14 @@ export function createDb(connectionString: string): {
   }
 
   try {
+    const isPgBouncer = connectionString.includes("pooler.supabase.com");
     const client = postgres(connectionString, {
       max: 10, // connection pool size
       idle_timeout: 20,
       connect_timeout: 10,
       ssl: "require",
+      // PgBouncer (Supabase pooler) doesn't support prepared statements
+      ...(isPgBouncer && { prepare: false }),
     });
 
     const db = drizzle(client, { schema });
