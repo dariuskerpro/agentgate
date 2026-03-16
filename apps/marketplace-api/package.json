@@ -1,7 +1,7 @@
 {
   "name": "@agentgate/marketplace-api",
   "version": "0.0.1",
-  "description": "AgentGate Marketplace API — Hono on Cloudflare Workers",
+  "description": "AgentGate Marketplace API",
   "license": "UNLICENSED",
   "private": true,
   "type": "module",
@@ -10,7 +10,8 @@
     "build": "tsc",
     "test": "vitest run",
     "lint": "biome check src/",
-    "dev": "echo 'dev server not configured yet'",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx src/db/seed.ts"
@@ -18,12 +19,15 @@
   "devDependencies": {
     "@agentgate/middleware": "workspace:*",
     "@types/express": "^5.0.6",
-    "dotenv": "^17.3.1",
     "drizzle-kit": "^0.31.9",
     "drizzle-orm": "^0.45.1",
     "express": "^5.2.1",
     "hono": "^4.12.8",
     "postgres": "^3.4.8",
     "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.11",
+    "dotenv": "^17.3.1"
   }
 }
