@@ -10,39 +10,18 @@ const docs = [
     icon: "🚀",
   },
   {
-    title: "Middleware Reference",
+    title: "How It Works",
     description:
-      "Express, Hono, and Next.js middleware API reference. Route config, pricing, and options.",
-    href: "/docs/getting-started",
-    icon: "📦",
-  },
-  {
-    title: "Discovery API",
-    description:
-      "Browse and search the marketplace. Filter by category, price, and capabilities.",
-    href: "/docs/getting-started",
-    icon: "🔍",
-  },
-  {
-    title: "Pricing Guide",
-    description:
-      "How x402 payments work. USDC on Base, per-call pricing, settlement flow.",
-    href: "/docs/getting-started",
-    icon: "💰",
-  },
-  {
-    title: "Architecture",
-    description:
-      "How AgentGate works under the hood. Routing, identity, payment verification.",
-    href: "/docs/getting-started",
+      "Understand the x402 payment flow, discovery protocol, and settlement architecture.",
+    href: "/how-it-works",
     icon: "🏗️",
   },
   {
-    title: "FAQ",
+    title: "Marketplace",
     description:
-      "Common questions about AgentGate, x402, Base, USDC, and the marketplace.",
-    href: "/docs/getting-started",
-    icon: "❓",
+      "Browse live endpoints. Filter by category, price, and network.",
+    href: "/marketplace",
+    icon: "🔍",
   },
 ];
 

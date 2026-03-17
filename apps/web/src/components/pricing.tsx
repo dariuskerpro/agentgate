@@ -4,20 +4,14 @@ const tiers = [
   {
     label: "UTILITY",
     name: "Utility Endpoints",
-    range: "$0.001 – $0.02",
-    examples: "Email validate, DNS lookup, IP geolocate, crypto price",
+    range: "$0.0001 – $0.0005",
+    examples: "Email validate, DNS lookup, IP geolocate, Crypto price, Phone validate, URL metadata",
   },
   {
     label: "AI INFERENCE",
     name: "AI Inference",
-    range: "$0.03 – $0.10",
-    examples: "Code review, transcription, PDF extract, scrape & enrich",
-  },
-  {
-    label: "PIPELINES",
-    name: "Multi-step Pipelines",
-    range: "$0.10 – $0.25",
-    examples: "Transcript → PRD, audio → summary → action items",
+    range: "Dynamic — based on input size",
+    examples: "Code review (Claude), Transcription (Whisper), PDF extract (Gemini), Scrape & enrich, Transcript → PRD",
   },
 ];
 
@@ -30,7 +24,7 @@ export function Pricing() {
         </h2>
         <p className="section-subtitle">
           No monthly fees. Sellers set their price. Buyers pay per call.
-          Every transaction settles in USDC on Base.
+          Every transaction settles in USDC on Base and Solana.
         </p>
 
         <div className="pricing-cards">
@@ -50,6 +44,18 @@ export function Pricing() {
                   <li key={ex}>{ex}</li>
                 ))}
               </ul>
+              {tier.label === "AI INFERENCE" && (
+                <p style={{
+                  color: "var(--color-text-dim)",
+                  fontSize: "0.8125rem",
+                  fontFamily: "var(--font-mono)",
+                  marginTop: "1rem",
+                  lineHeight: 1.5,
+                }}>
+                  AI endpoints use token-based pricing — you pay based on input size, not a flat fee.
+                  Rates track provider costs with a 3% markup.
+                </p>
+              )}
             </div>
           ))}
         </div>

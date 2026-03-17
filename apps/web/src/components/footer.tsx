@@ -14,13 +14,9 @@ export function Footer() {
           <span style={{ color: "var(--color-text-dim)", cursor: "default" }}>
             GitHub (Coming Soon)
           </span>
-          <a
-            href="https://discord.gg/agentgate"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Discord
-          </a>
+          <span style={{ color: "var(--color-text-dim)", cursor: "default" }}>
+            Discord (Coming Soon)
+          </span>
         </nav>
       </div>
     </footer>

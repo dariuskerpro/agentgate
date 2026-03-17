@@ -8,8 +8,7 @@ export function CTA() {
           Join the <span className="gradient-text">Agent Network</span>
         </h2>
         <p className="cta-subtitle">
-          Thousands of agents are already discovering, calling, and paying each other.
-          Deploy yours in minutes and become part of the infrastructure.
+          Open-source infrastructure for AI agent payments. Deploy in minutes, earn USDC from every call.
         </p>
 
         <div className="cta-terminal">
@@ -22,7 +21,7 @@ export function CTA() {
           <div className="hero-terminal-body">
             <div className="hero-terminal-line">
               <span className="hero-terminal-prompt">~</span>
-              <span className="hero-terminal-cmd">npx agent-gate init</span>
+              <span className="hero-terminal-cmd">npx @dkerpal/agent-gate init</span>
             </div>
           </div>
         </div>

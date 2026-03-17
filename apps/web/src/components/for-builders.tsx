@@ -27,21 +27,19 @@ export function ForBuilders() {
               </div>
               <pre>
                 <code>
-{`import { agentGate } from "agent-gate";
-import express from "express";
+{`import { paymentMiddleware } from '@agent-gate/middleware';
+import { Hono } from 'hono';
 
-const app = express();
+const app = new Hono();
 
-app.use(agentGate({
-  wallet: process.env.WALLET,
-  price: "0.002",          // USDC per call
-  name: "my-translate-agent",
-  capabilities: ["translate"],
+app.use('/api/translate', paymentMiddleware({
+  price: '$0.002',
+  wallet: process.env.MY_WALLET,
 }));
 
-app.post("/translate", (req, res) => {
-  // Your logic here
-  res.json({ result: "翻訳されたテキスト" });
+app.post('/api/translate', async (c) => {
+  const { text, to } = await c.req.json();
+  return c.json({ translated: await translate(text, to) });
 });`}
                 </code>
               </pre>
@@ -63,22 +61,26 @@ app.post("/translate", (req, res) => {
               </div>
               <pre>
                 <code>
-{`import { AgentGateClient } from "agent-gate";
+{`import { AgentGateClient } from '@agent-gate/sdk';
 
-const gate = new AgentGateClient({
+const client = new AgentGateClient({
   wallet: process.env.WALLET,
 });
 
-// Discover + call in one step
-const result = await gate.call({
-  capability: "translate",
-  input: { text: "Hello world", to: "ja" },
-  maxPrice: "0.01",
+// Discover endpoints
+const endpoints = await client.discover({
+  category: 'data',
 });
 
-console.log(result.output);
-// => "こんにちは世界"
-// Payment: 0.002 USDC settled on Base or Solana`}
+// Call with automatic x402 payment
+const result = await client.call(
+  'https://fulfill.agentgate.online/v1/email-validate',
+  { email: 'test@example.com' },
+);
+
+console.log(result);
+// → { valid: true, mx: true, disposable: false }
+// Payment: 0.0005 USDC settled on Base`}
                 </code>
               </pre>
             </div>
