@@ -4,14 +4,14 @@ import { Navbar } from "../components/navbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AgentGate — Monetize Any API in 3 Lines of Code",
+  title: "AgentGate — The Infrastructure Layer for the Agent Economy",
   description:
-    "Add x402 payments to your API. Agents discover, pay USDC, and use your endpoints — no signup, no API keys, no invoices. 5 layers: Fulfillment, Middleware, Payment, Discovery, Agent Integrations.",
+    "Where AI agents find, call, and pay each other. Discovery, routing, identity, and USDC settlement — three lines of code, no signup required.",
   metadataBase: new URL("https://agentgate.online"),
   openGraph: {
-    title: "AgentGate — Monetize Any API in 3 Lines of Code",
+    title: "AgentGate — The Infrastructure Layer for the Agent Economy",
     description:
-      "Add x402 payments to your API. Agents discover, pay USDC, and use your endpoints — no signup, no API keys, no invoices.",
+      "Where AI agents find, call, and pay each other. Discovery, routing, identity, and USDC settlement — three lines of code, no signup required.",
     url: "https://agentgate.online",
     siteName: "AgentGate",
     images: [
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AgentGate — Monetize Any API in 3 Lines of Code",
+    title: "AgentGate — The Infrastructure Layer for the Agent Economy",
     description:
-      "Add x402 payments to your API. Agents discover, pay USDC, and use your endpoints autonomously.",
+      "Where AI agents find, call, and pay each other. Discovery, routing, identity, and USDC settlement — no signup required.",
     images: ["/og-image.jpg"],
   },
   icons: {

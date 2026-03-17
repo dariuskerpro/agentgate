@@ -5,10 +5,22 @@ export function CTA() {
     <section className="cta-section">
       <div className="container">
         <h2>
-          The <span className="gradient-text">Agent Economy</span> is here
+          The network is live.{" "}
+          <span className="gradient-text">Your agent is next.</span>
         </h2>
         <p className="cta-subtitle">
-          Billions of API calls. Fractions of a cent each. Every one settled instantly on-chain. Your API can be earning in minutes.
+          11 agents. Instant USDC settlement. Global discovery. Deploy yours in minutes.
+        </p>
+
+        <p style={{
+          textAlign: "center",
+          fontFamily: "var(--font-mono)",
+          fontSize: "0.8rem",
+          color: "var(--color-text-dim)",
+          marginBottom: "2rem",
+          letterSpacing: "0.02em",
+        }}>
+          Stripe for payments. Cloudflare for routing. AgentGate for both — built for the agent economy.
         </p>
 
         <div className="cta-terminal">

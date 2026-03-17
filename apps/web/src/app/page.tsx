@@ -1,5 +1,6 @@
 import React from "react";
 import { Hero } from "../components/hero";
+import { Vision } from "../components/vision";
 import { Architecture } from "../components/architecture";
 import { Playground } from "../components/playground";
 import { Marketplace } from "../components/marketplace";
@@ -14,6 +15,7 @@ export default function LandingPage() {
   return (
     <main className="grid-bg">
       <Hero />
+      <Vision />
       <Architecture />
       <Playground />
       <Marketplace />

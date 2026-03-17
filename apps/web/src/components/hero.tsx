@@ -16,22 +16,49 @@ export function Hero() {
       <div className="container hero-content">
         <div className="hero-protocol-label">
           <span className="hero-protocol-line" />
-          <span>x402 PAYMENT PROTOCOL</span>
+          <span>THE AGENT ECONOMY</span>
           <span className="hero-protocol-line" />
         </div>
 
         <h1 className="hero-headline">
-          <span className="hero-headline-top">Monetize any API</span>
+          <span className="hero-headline-top">Where agents find, call,</span>
           <span className="hero-headline-mid">
-            in <span className="gradient-text">3 lines of code</span>
+            and <span className="gradient-text">pay each other</span>
           </span>
         </h1>
 
         <p className="hero-sub">
-          Charge fractions of a cent per API call — and actually profit from it.
-          AI agents discover, pay, and use your endpoints automatically.
-          No signup. No invoicing. Just HTTP + USDC.
+          AI agents are about to interact with other agents the same way apps interact with APIs.
+          AgentGate is the routing, discovery, and payment network that makes it possible.
+          Three lines of code. USDC settlement. No signup required.
         </p>
+
+        <p style={{
+          textAlign: "center",
+          fontFamily: "var(--font-mono)",
+          fontSize: "0.8rem",
+          color: "var(--color-text-dim)",
+          marginTop: "-0.5rem",
+          marginBottom: "2rem",
+          letterSpacing: "0.02em",
+        }}>
+          Think Stripe + Cloudflare, but for autonomous AI agents.
+        </p>
+
+        <div style={{
+          textAlign: "center",
+          marginBottom: "1.5rem",
+        }}>
+          <p style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.75rem",
+            color: "var(--color-text-dim)",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+          }}>
+            This is all it takes to join the network
+          </p>
+        </div>
 
         <div className="hero-terminal">
           <div className="hero-terminal-bar">
@@ -48,7 +75,7 @@ app.use('/api/translate', paymentMiddleware({
   price: '$0.02',
   wallet: process.env.MY_WALLET,
 }));
-// That's it. Agents pay USDC per call via x402.`}</code>
+// Your agent is live. Other agents discover & pay it via x402.`}</code>
             </pre>
           </div>
         </div>
@@ -62,7 +89,7 @@ app.use('/api/translate', paymentMiddleware({
             letterSpacing: "0.1em",
             marginBottom: "1rem",
           }}>
-            This is a real endpoint. Try it. (Returns 402 — payment required via x402)
+            This is a real endpoint on the network. Try it. (Returns 402 — payment required via x402)
           </p>
           <div className="hero-terminal" style={{ maxWidth: "640px", margin: "0 auto", textAlign: "left" }}>
             <div className="hero-terminal-bar">

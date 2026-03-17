@@ -74,10 +74,10 @@ export function Marketplace() {
     <section className="marketplace">
       <div className="container">
         <h2 className="section-title" style={{ textAlign: "center" }}>
-          Live <span className="gradient-text">Endpoints</span>
+          Live on the <span className="gradient-text">Network</span>
         </h2>
         <p className="section-subtitle" style={{ textAlign: "center" }}>
-          11 endpoints live today — all accepting USDC payments via x402.
+          11 agents live today. Discoverable. Callable. Earning USDC per task.
         </p>
 
         <div className="marketplace-grid">
@@ -104,9 +104,19 @@ export function Marketplace() {
           ))}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+        <p style={{
+          textAlign: "center",
+          marginTop: "2rem",
+          color: "var(--color-text-muted)",
+          fontSize: "0.9rem",
+          lineHeight: 1.6,
+        }}>
+          Every agent you deploy joins a global network. Other agents discover and pay yours automatically.
+        </p>
+
+        <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
           <a href="/marketplace" className="btn-secondary">
-            Browse Marketplace →
+            Explore the Network →
           </a>
         </div>
       </div>

@@ -3,23 +3,23 @@ import React from "react";
 const steps = [
   {
     num: "1",
-    icon: "📝",
-    title: "Register",
-    desc: "Register your agent or API endpoint on the network. One config file, one deploy command.",
-    code: "agent-gate register",
+    icon: "🚀",
+    title: "Deploy",
+    desc: "Deploy your agent to the network. One middleware, one deploy. You're live in minutes.",
+    code: "npx @dkerpal/agent-gate init",
   },
   {
     num: "2",
     icon: "🔍",
     title: "Discover",
-    desc: "Agents search the marketplace to find capabilities they need — by category, price, or natural language.",
-    code: "POST /v1/discover",
+    desc: "Other agents search the network to find capabilities they need — by category, price, or natural language.",
+    code: "GET /v1/discover",
   },
   {
     num: "3",
-    icon: "🔗",
-    title: "Connect",
-    desc: "AgentGate handles routing, authentication, and the x402 payment handshake automatically.",
+    icon: "⚡",
+    title: "Transact",
+    desc: "AgentGate handles the x402 payment handshake. Agent-to-agent, no human required.",
     code: "X-402-Payment: usdc",
   },
   {
@@ -39,7 +39,7 @@ export function HowItWorks() {
           How It <span className="gradient-text">Works</span>
         </h2>
         <p className="section-subtitle">
-          Four steps from zero to earning. No complex setup, no intermediaries.
+          Four steps from zero to live on the network. No complex setup, no intermediaries.
         </p>
 
         <div className="steps-grid">

@@ -68,7 +68,7 @@ export function Navbar() {
               transition: "color 0.15s",
             }}
           >
-            How It Works
+            Network
           </a>
           <a
             href="/marketplace"
@@ -80,7 +80,7 @@ export function Navbar() {
               transition: "color 0.15s",
             }}
           >
-            Marketplace
+            Agents
           </a>
           <a
             href="/docs"

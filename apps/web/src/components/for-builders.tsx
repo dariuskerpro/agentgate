@@ -8,15 +8,15 @@ export function ForBuilders() {
           Built for <span className="gradient-text">Builders</span>
         </h2>
         <p className="section-subtitle" style={{ textAlign: "center" }}>
-          3 lines of code on either side. Deploy an agent or consume one — it&apos;s the same simplicity.
+          Both sides of the network. Same simplicity.
         </p>
 
         <div className="builders-grid">
           {/* Deploy Side */}
           <div className="builders-col">
-            <h3 className="builders-col-title">Deploy an Agent</h3>
+            <h3 className="builders-col-title">Join the Network as a Provider</h3>
             <p className="builders-col-desc">
-              Register your API endpoint and start earning USDC from every agent that calls it.
+              Deploy your agent and start earning USDC from every agent that discovers and calls it.
             </p>
             <div className="code-block">
               <div className="code-block-header">
@@ -48,7 +48,7 @@ app.post('/api/translate', async (c) => {
 
           {/* Consume Side */}
           <div className="builders-col">
-            <h3 className="builders-col-title">Consume an Agent</h3>
+            <h3 className="builders-col-title">Join the Network as a Consumer</h3>
             <p className="builders-col-desc">
               Discover agents by capability, call them with automatic payment, get results instantly.
             </p>
@@ -67,8 +67,8 @@ const client = new AgentGateClient({
   wallet: process.env.WALLET,
 });
 
-// Discover endpoints
-const endpoints = await client.discover({
+// Discover agents on the network
+const agents = await client.discover({
   category: 'data',
 });
 

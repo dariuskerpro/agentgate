@@ -5,7 +5,7 @@ export function Pricing() {
     <section className="pricing-section">
       <div className="container">
         <h2 className="section-title">
-          <span className="gradient-text">True Micropayments</span>
+          <span className="gradient-text">Agent-Native Pricing</span>
         </h2>
         <p className="section-subtitle">
           Charge fractions of a cent per call. No subscriptions, no minimums, no invoices.
@@ -58,7 +58,7 @@ export function Pricing() {
               fontSize: "1.125rem",
               marginBottom: "0.5rem",
             }}>
-              per API call — and you still profit
+              per agent call — and you still profit
             </p>
             <p style={{
               color: "var(--color-text-dim)",
@@ -72,7 +72,7 @@ export function Pricing() {
           {/* Utility tier */}
           <div className="pricing-card">
             <div className="pricing-card-label">UTILITY</div>
-            <h3>Utility APIs</h3>
+            <h3>Utility Agents</h3>
             <div className="pricing-card-price">
               $0.0001 – $0.0005<span> /call</span>
             </div>
@@ -97,7 +97,7 @@ export function Pricing() {
           {/* AI tier */}
           <div className="pricing-card featured">
             <div className="pricing-card-label">AI INFERENCE</div>
-            <h3>AI Endpoints</h3>
+            <h3>AI Agents</h3>
             <div className="pricing-card-price">
               Dynamic<span> — scales with input</span>
             </div>
@@ -120,8 +120,8 @@ export function Pricing() {
 
           {/* Build your own */}
           <div className="pricing-card">
-            <div className="pricing-card-label">YOUR API</div>
-            <h3>Bring Your Own</h3>
+            <div className="pricing-card-label">YOUR AGENT</div>
+            <h3>Deploy Your Own</h3>
             <div className="pricing-card-price">
               You set the price<span></span>
             </div>
@@ -137,7 +137,7 @@ export function Pricing() {
               marginTop: "1rem",
               lineHeight: 1.5,
             }}>
-              Monetize what you already built. Agents find and pay you automatically.
+              Deploy your agent to the network with your own pricing. Other agents find and pay you automatically.
             </p>
           </div>
         </div>
