@@ -15,6 +15,8 @@ import { handleIpGeolocate } from "./handlers/ip-geolocate.js";
 import { handleScrapeEnrich } from "./handlers/scrape-enrich.js";
 import { handleTranscribe } from "./handlers/transcribe.js";
 import { handlePdfExtract } from "./handlers/pdf-extract.js";
+import { ENDPOINT_PRICING } from "./lib/pricing-config.js";
+import { getDynamicPrice } from "./lib/dynamic-pricing.js";
 
 const SELLER_WALLET = process.env.SELLER_WALLET || "";
 const SELLER_WALLET_SOL = process.env.SELLER_WALLET_SOL || "";
@@ -44,110 +46,53 @@ app.get("/health", (c) =>
   }),
 );
 
+// Helper to build accepts array at a given price
+function buildAccepts(price: string) {
+  const opts = [];
+  if (SELLER_WALLET) {
+    opts.push({ scheme: "exact", network: EVM_NETWORK, price, payTo: SELLER_WALLET });
+  }
+  if (SELLER_WALLET_SOL) {
+    opts.push({ scheme: "exact", network: SOL_NETWORK, price, payTo: SELLER_WALLET_SOL });
+  }
+  return opts.length === 1 ? opts[0] : opts;
+}
+
+// Build x402 route configs dynamically from pricing config
+function buildRouteConfig() {
+  const endpointDescriptions: Record<string, string> = {
+    '/v1/code-review': 'Code review — security, performance, and architecture feedback (up to 100K chars)',
+    '/v1/transcript-to-prd': 'Meeting transcript → structured PRD with user stories, acceptance criteria, and priorities',
+    '/v1/email-validate': 'Email validation — format, MX records, disposable detection, typo suggestions',
+    '/v1/dns-lookup': 'DNS lookup — A, AAAA, MX, NS, TXT, CNAME, SOA records for any domain',
+    '/v1/url-metadata': 'URL metadata extraction — title, description, OG tags, Twitter cards, favicon',
+    '/v1/phone-validate': 'Phone validation — format check, E.164 normalization, country detection',
+    '/v1/crypto-price': 'Crypto price lookup — current price, 24h change, market cap, volume',
+    '/v1/ip-geolocate': 'IP geolocation — country, city, ISP, coordinates, timezone',
+    '/v1/transcribe': 'Audio transcription — speech-to-text with timestamps, segments, and language detection',
+    '/v1/scrape-enrich': 'URL scraping and enrichment — fetch, extract, and optionally structure content with AI',
+    '/v1/pdf-extract': 'PDF extraction — text, tables, and key-value pairs from PDF documents via Gemini',
+  };
+
+  const routes: Record<string, { accepts: any; description: string }> = {};
+
+  for (const [path] of Object.entries(ENDPOINT_PRICING)) {
+    const price = getDynamicPrice(path, {}); // default input for baseline price
+    const method = 'POST';
+    const routeKey = `${method} ${path}`;
+
+    routes[routeKey] = {
+      accepts: buildAccepts(price),
+      description: endpointDescriptions[path] || path,
+    };
+  }
+
+  return routes;
+}
+
 // x402 payment middleware — only on the paid routes
 if (USE_PAYMENTS && (SELLER_WALLET || SELLER_WALLET_SOL)) {
-  // Build payment options — accept both Base and Solana
-  const acceptsOptions = [];
-
-  if (SELLER_WALLET) {
-    acceptsOptions.push({
-      scheme: "exact",
-      network: EVM_NETWORK,
-      price: "$0.05",
-      payTo: SELLER_WALLET,
-    });
-  }
-
-  if (SELLER_WALLET_SOL) {
-    acceptsOptions.push({
-      scheme: "exact",
-      network: SOL_NETWORK,
-      price: "$0.05",
-      payTo: SELLER_WALLET_SOL,
-    });
-  }
-
-  const acceptsOptionsPrd = [];
-
-  if (SELLER_WALLET) {
-    acceptsOptionsPrd.push({
-      scheme: "exact",
-      network: EVM_NETWORK,
-      price: "$0.035",
-      payTo: SELLER_WALLET,
-    });
-  }
-
-  if (SELLER_WALLET_SOL) {
-    acceptsOptionsPrd.push({
-      scheme: "exact",
-      network: SOL_NETWORK,
-      price: "$0.035",
-      payTo: SELLER_WALLET_SOL,
-    });
-  }
-
-  // Helper to build accepts array at a given price
-  function buildAccepts(price: string) {
-    const opts = [];
-    if (SELLER_WALLET) {
-      opts.push({ scheme: "exact", network: EVM_NETWORK, price, payTo: SELLER_WALLET });
-    }
-    if (SELLER_WALLET_SOL) {
-      opts.push({ scheme: "exact", network: SOL_NETWORK, price, payTo: SELLER_WALLET_SOL });
-    }
-    return opts.length === 1 ? opts[0] : opts;
-  }
-
-  const routes = {
-    // --- Premium (AI inference) ---
-    "POST /v1/code-review": {
-      accepts: acceptsOptions.length === 1 ? acceptsOptions[0] : acceptsOptions,
-      description: "Code review — security, performance, and architecture feedback (up to 100K chars)",
-    },
-    "POST /v1/transcript-to-prd": {
-      accepts: acceptsOptionsPrd.length === 1 ? acceptsOptionsPrd[0] : acceptsOptionsPrd,
-      description: "Meeting transcript → structured PRD with user stories, acceptance criteria, and priorities",
-    },
-    // --- Utility (micropayment) ---
-    "POST /v1/email-validate": {
-      accepts: buildAccepts("$0.0005"),
-      description: "Email validation — format, MX records, disposable detection, typo suggestions",
-    },
-    "POST /v1/dns-lookup": {
-      accepts: buildAccepts("$0.0003"),
-      description: "DNS lookup — A, AAAA, MX, NS, TXT, CNAME, SOA records for any domain",
-    },
-    "POST /v1/url-metadata": {
-      accepts: buildAccepts("$0.0005"),
-      description: "URL metadata extraction — title, description, OG tags, Twitter cards, favicon",
-    },
-    "POST /v1/phone-validate": {
-      accepts: buildAccepts("$0.0003"),
-      description: "Phone validation — format check, E.164 normalization, country detection",
-    },
-    "POST /v1/crypto-price": {
-      accepts: buildAccepts("$0.0001"),
-      description: "Crypto price lookup — current price, 24h change, market cap, volume",
-    },
-    "POST /v1/ip-geolocate": {
-      accepts: buildAccepts("$0.0002"),
-      description: "IP geolocation — country, city, ISP, coordinates, timezone",
-    },
-    // --- New AI endpoints ---
-    "POST /v1/transcribe": {
-      accepts: buildAccepts("$0.015"),
-      description: "Audio transcription — speech-to-text with timestamps, segments, and language detection",
-    },
-    "POST /v1/scrape-enrich": {
-      accepts: buildAccepts("$0.012"),
-      description: "URL scraping and enrichment — fetch, extract, and optionally structure content with AI",
-    },
-    "POST /v1/pdf-extract": {
-      accepts: buildAccepts("$0.02"),
-      description: "PDF extraction — text, tables, and key-value pairs from PDF documents via Gemini",
-    },
-  };
+  const routes = buildRouteConfig();
 
   // Register scheme servers for both chains
   const schemes: SchemeRegistration[] = [];

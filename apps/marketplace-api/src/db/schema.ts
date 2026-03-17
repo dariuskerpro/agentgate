@@ -37,6 +37,8 @@ export const endpoints = pgTable(
     description: text("description"),
     category: text("category").notNull(),
     price_usdc: numeric("price_usdc", { precision: 20, scale: 8 }).notNull(),
+    pricing_mode: text("pricing_mode").notNull().default("flat"),
+    pricing_config: jsonb("pricing_config"),
     input_schema: jsonb("input_schema"),
     output_schema: jsonb("output_schema"),
     network: text("network").default("eip155:8453"),
@@ -90,6 +92,46 @@ export const endpointHealth = pgTable(
   ],
 );
 
+// ── Provider Rates ───────────────────────────────────────────────
+
+export const providerRates = pgTable(
+  "provider_rates",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    provider: text("provider").notNull(),
+    model: text("model").notNull(),
+    input_rate_per_1k: numeric("input_rate_per_1k", { precision: 20, scale: 10 }).notNull(),
+    output_rate_per_1k: numeric("output_rate_per_1k", { precision: 20, scale: 10 }),
+    unit: text("unit").notNull().default("tokens"), // 'tokens' | 'minutes' | 'pages'
+    updated_at: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("provider_rates_provider_model_unique").on(table.provider, table.model),
+  ],
+);
+
+// ── Usage Tracking ───────────────────────────────────────────────
+
+export const usageTracking = pgTable(
+  "usage_tracking",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    endpoint_id: uuid("endpoint_id").references(() => endpoints.id),
+    transaction_id: uuid("transaction_id").references(() => transactions.id),
+    input_tokens: integer("input_tokens"),
+    output_tokens: integer("output_tokens"),
+    estimated_output_tokens: integer("estimated_output_tokens"),
+    actual_cost_usdc: numeric("actual_cost_usdc", { precision: 20, scale: 8 }),
+    charged_usdc: numeric("charged_usdc", { precision: 20, scale: 8 }),
+    margin_usdc: numeric("margin_usdc", { precision: 20, scale: 8 }),
+    created_at: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  },
+  (table) => [
+    index("idx_usage_endpoint").on(table.endpoint_id),
+    index("idx_usage_created").on(table.created_at),
+  ],
+);
+
 // ── Named index exports (for test assertions) ───────────────────
 
 export {
@@ -105,3 +147,6 @@ export const transactionsEndpoint = "idx_transactions_endpoint";
 export const transactionsCreated = "idx_transactions_created";
 export const transactionsBuyer = "idx_transactions_buyer";
 export const healthEndpoint = "idx_health_endpoint";
+export const usageEndpoint = "idx_usage_endpoint";
+export const usageCreated = "idx_usage_created";
+export const providerRatesProviderModel = "provider_rates_provider_model_unique";

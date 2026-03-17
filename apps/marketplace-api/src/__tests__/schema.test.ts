@@ -6,12 +6,17 @@ import {
   endpoints,
   transactions,
   endpointHealth,
+  providerRates,
+  usageTracking,
   endpointsCategory,
   endpointsActive,
   transactionsEndpoint,
   transactionsCreated,
   transactionsBuyer,
   healthEndpoint,
+  usageEndpoint,
+  usageCreated,
+  providerRatesProviderModel,
 } from "../db/schema.js";
 
 // Helper to get a column map from a Drizzle table
@@ -85,6 +90,8 @@ describe("AG-005: Database Schema", () => {
           "description",
           "category",
           "price_usdc",
+          "pricing_mode",
+          "pricing_config",
           "input_schema",
           "output_schema",
           "network",
@@ -226,6 +233,115 @@ describe("AG-005: Database Schema", () => {
     });
   });
 
+  describe("endpoints pricing columns", () => {
+    it("pricing_mode is not nullable and has default 'flat'", () => {
+      const cols = getColumns(endpoints);
+      expect(cols.pricing_mode.notNull).toBe(true);
+      expect(cols.pricing_mode.hasDefault).toBe(true);
+    });
+
+    it("pricing_config is jsonb", () => {
+      const cols = getColumns(endpoints);
+      expect(cols.pricing_config.columnType).toBe("PgJsonb");
+    });
+  });
+
+  describe("provider_rates table", () => {
+    it("has all expected columns", () => {
+      const cols = getColumns(providerRates);
+      expect(Object.keys(cols).sort()).toEqual(
+        ["id", "provider", "model", "input_rate_per_1k", "output_rate_per_1k", "unit", "updated_at"].sort(),
+      );
+    });
+
+    it("uses uuid primary key for id", () => {
+      const cols = getColumns(providerRates);
+      expect(cols.id.columnType).toBe("PgUUID");
+      expect(cols.id.primary).toBe(true);
+    });
+
+    it("provider and model are not nullable", () => {
+      const cols = getColumns(providerRates);
+      expect(cols.provider.notNull).toBe(true);
+      expect(cols.model.notNull).toBe(true);
+    });
+
+    it("input_rate_per_1k is numeric and not nullable", () => {
+      const cols = getColumns(providerRates);
+      expect(cols.input_rate_per_1k.columnType).toBe("PgNumeric");
+      expect(cols.input_rate_per_1k.notNull).toBe(true);
+    });
+
+    it("has unique index on (provider, model)", () => {
+      const config = getTableConfig(providerRates);
+      const idx = config.indexes.find((i: any) => {
+        const cols = i.config.columns.map((c: any) => c.name).sort();
+        return cols.length === 2 && cols.includes("provider") && cols.includes("model");
+      });
+      expect(idx).toBeDefined();
+      expect(idx!.config.unique).toBe(true);
+    });
+
+    it("unit defaults to 'tokens'", () => {
+      const cols = getColumns(providerRates);
+      expect(cols.unit.hasDefault).toBe(true);
+      expect(cols.unit.notNull).toBe(true);
+    });
+  });
+
+  describe("usage_tracking table", () => {
+    it("has all expected columns", () => {
+      const cols = getColumns(usageTracking);
+      expect(Object.keys(cols).sort()).toEqual(
+        [
+          "id",
+          "endpoint_id",
+          "transaction_id",
+          "input_tokens",
+          "output_tokens",
+          "estimated_output_tokens",
+          "actual_cost_usdc",
+          "charged_usdc",
+          "margin_usdc",
+          "created_at",
+        ].sort(),
+      );
+    });
+
+    it("uses uuid primary key for id", () => {
+      const cols = getColumns(usageTracking);
+      expect(cols.id.columnType).toBe("PgUUID");
+      expect(cols.id.primary).toBe(true);
+    });
+
+    it("endpoint_id references endpoints.id", () => {
+      const config = getTableConfig(usageTracking);
+      const fk = config.foreignKeys.find((fk: any) =>
+        fk.reference().columns.some((c: any) => c.name === "endpoint_id"),
+      );
+      expect(fk).toBeDefined();
+      const ref = fk!.reference();
+      expect(getTableName(ref.foreignTable as any)).toBe("endpoints");
+    });
+
+    it("transaction_id references transactions.id", () => {
+      const config = getTableConfig(usageTracking);
+      const fk = config.foreignKeys.find((fk: any) =>
+        fk.reference().columns.some((c: any) => c.name === "transaction_id"),
+      );
+      expect(fk).toBeDefined();
+      const ref = fk!.reference();
+      expect(getTableName(ref.foreignTable as any)).toBe("transactions");
+    });
+
+    it("cost columns are numeric", () => {
+      const cols = getColumns(usageTracking);
+      expect(cols.actual_cost_usdc.columnType).toBe("PgNumeric");
+      expect(cols.charged_usdc.columnType).toBe("PgNumeric");
+      expect(cols.margin_usdc.columnType).toBe("PgNumeric");
+    });
+  });
+
   // ── Indexes ───────────────────────────────────────────────────
 
   describe("indexes", () => {
@@ -266,6 +382,28 @@ describe("AG-005: Database Schema", () => {
         return cols.length === 2 && cols.includes("endpoint_id") && cols.includes("checked_at");
       });
       expect(idx).toBeDefined();
+    });
+
+    it("usage_tracking has endpoint_id index", () => {
+      const config = getTableConfig(usageTracking);
+      const idx = config.indexes.find((i: any) => i.config.columns.some((c: any) => c.name === "endpoint_id"));
+      expect(idx).toBeDefined();
+    });
+
+    it("usage_tracking has created_at index", () => {
+      const config = getTableConfig(usageTracking);
+      const idx = config.indexes.find((i: any) => i.config.columns.some((c: any) => c.name === "created_at"));
+      expect(idx).toBeDefined();
+    });
+
+    it("provider_rates has unique index on (provider, model)", () => {
+      const config = getTableConfig(providerRates);
+      const idx = config.indexes.find((i: any) => {
+        const cols = i.config.columns.map((c: any) => c.name).sort();
+        return cols.length === 2 && cols.includes("provider") && cols.includes("model");
+      });
+      expect(idx).toBeDefined();
+      expect(idx!.config.unique).toBe(true);
     });
   });
 });

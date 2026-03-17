@@ -6,6 +6,7 @@ import type {
   Endpoint,
   Transaction,
   CategoryCount,
+  ProviderRate,
   DiscoverQuery,
   SellerRepository,
   EndpointRepository,
@@ -44,6 +45,7 @@ export class MockSellerRepository implements SellerRepository {
 
 export class MockEndpointRepository implements EndpointRepository {
   public endpoints: Endpoint[] = [];
+  public providerRates: ProviderRate[] = [];
 
   async findById(id: string): Promise<Endpoint | null> {
     return this.endpoints.find((e) => e.id === id) ?? null;
@@ -57,6 +59,8 @@ export class MockEndpointRepository implements EndpointRepository {
     const ep: Endpoint = {
       id: uuid(),
       ...data,
+      pricing_mode: data.pricing_mode ?? "flat",
+      pricing_config: data.pricing_config ?? null,
       active: data.active ?? true,
       created_at: new Date(),
     };
@@ -113,6 +117,10 @@ export class MockEndpointRepository implements EndpointRepository {
       counts.set(ep.category, (counts.get(ep.category) ?? 0) + 1);
     }
     return Array.from(counts.entries()).map(([category, count]) => ({ category, count }));
+  }
+
+  async getProviderRates(): Promise<ProviderRate[]> {
+    return [...this.providerRates].sort((a, b) => a.provider.localeCompare(b.provider));
   }
 }
 

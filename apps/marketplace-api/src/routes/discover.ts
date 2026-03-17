@@ -2,7 +2,22 @@
  * Public discovery routes — no auth required.
  */
 import { Hono } from "hono";
-import type { Repositories } from "../repositories/types.js";
+import type { Endpoint, Repositories } from "../repositories/types.js";
+
+// Helper to format pricing for API response
+function formatPricing(endpoint: Endpoint) {
+  const base = {
+    pricing_mode: endpoint.pricing_mode,
+    price_usdc: endpoint.price_usdc, // keep legacy field
+  };
+
+  if (endpoint.pricing_mode === "flat" || !endpoint.pricing_config) {
+    return { ...base, pricing: { price: endpoint.price_usdc } };
+  }
+
+  // For provider_mapped and custom_token, include the config details
+  return { ...base, pricing: endpoint.pricing_config };
+}
 
 export function discoverRoutes(repos: Repositories) {
   const app = new Hono();
@@ -12,6 +27,12 @@ export function discoverRoutes(repos: Repositories) {
   app.get("/categories", async (c) => {
     const categories = await repos.endpoints.getCategories();
     return c.json({ categories });
+  });
+
+  // GET /v1/discover/rates — list provider rates
+  app.get("/rates", async (c) => {
+    const rates = await repos.endpoints.getProviderRates();
+    return c.json({ rates });
   });
 
   // GET /v1/discover — search/browse active endpoints
@@ -31,7 +52,10 @@ export function discoverRoutes(repos: Repositories) {
     });
 
     return c.json({
-      endpoints: result.endpoints,
+      endpoints: result.endpoints.map((ep) => ({
+        ...ep,
+        ...formatPricing(ep),
+      })),
       total: result.total,
       limit,
       offset,
@@ -45,7 +69,7 @@ export function discoverRoutes(repos: Repositories) {
     if (!ep || !ep.active) {
       return c.json({ error: "Endpoint not found" }, 404);
     }
-    return c.json(ep);
+    return c.json({ ...ep, ...formatPricing(ep) });
   });
 
   return app;

@@ -305,6 +305,19 @@ describe("GET /v1/discover", () => {
     expect(body.total).toBe(4);
   });
 
+  it("includes pricing info in response", async () => {
+    await seedEndpoints();
+    const res = await app.request("/v1/discover");
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    for (const ep of body.endpoints) {
+      expect(ep.pricing_mode).toBeDefined();
+      expect(ep.pricing).toBeDefined();
+      // Default flat pricing — pricing.price equals price_usdc
+      expect(ep.pricing.price).toBe(ep.price_usdc);
+    }
+  });
+
   it("filters by category", async () => {
     await seedEndpoints();
     const res = await app.request("/v1/discover?category=data");
@@ -350,7 +363,7 @@ describe("GET /v1/discover", () => {
 });
 
 describe("GET /v1/discover/:id", () => {
-  it("returns endpoint details", async () => {
+  it("returns endpoint details with pricing", async () => {
     const seller = await registerSeller();
     const createRes = await authedRequest("/v1/endpoints", seller.api_key, {
       method: "POST",
@@ -365,6 +378,9 @@ describe("GET /v1/discover/:id", () => {
     expect(res.status).toBe(200);
     const body = (await res.json()) as any;
     expect(body.url).toBe("https://detail.com/api");
+    expect(body.pricing_mode).toBeDefined();
+    expect(body.pricing).toBeDefined();
+    expect(body.pricing.price).toBe("0.001");
   });
 
   it("returns 404 for non-existent endpoint", async () => {
@@ -425,6 +441,50 @@ describe("GET /v1/discover/categories", () => {
   it("works without auth", async () => {
     const res = await app.request("/v1/discover/categories");
     expect(res.status).toBe(200);
+  });
+});
+
+// ────────────────────────────────────────────────────────
+// Discovery: Provider rates
+// ────────────────────────────────────────────────────────
+describe("GET /v1/discover/rates", () => {
+  it("returns provider rates without auth", async () => {
+    const res = await app.request("/v1/discover/rates");
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    expect(body.rates).toBeDefined();
+    expect(Array.isArray(body.rates)).toBe(true);
+  });
+
+  it("returns seeded provider rates", async () => {
+    // Seed rates via the mock repo
+    (repos.endpoints as any).providerRates = [
+      {
+        id: "rate-1",
+        provider: "openai",
+        model: "gpt-4o",
+        input_rate_per_1k: "0.005",
+        output_rate_per_1k: "0.015",
+        unit: "tokens",
+        updated_at: new Date(),
+      },
+      {
+        id: "rate-2",
+        provider: "anthropic",
+        model: "claude-sonnet-4-20250514",
+        input_rate_per_1k: "0.003",
+        output_rate_per_1k: "0.015",
+        unit: "tokens",
+        updated_at: new Date(),
+      },
+    ];
+    const res = await app.request("/v1/discover/rates");
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    expect(body.rates).toHaveLength(2);
+    // Should be sorted by provider
+    expect(body.rates[0].provider).toBe("anthropic");
+    expect(body.rates[1].provider).toBe("openai");
   });
 });
 

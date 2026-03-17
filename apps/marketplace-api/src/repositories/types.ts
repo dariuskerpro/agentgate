@@ -19,6 +19,8 @@ export interface Endpoint {
   description: string | null;
   category: string;
   price_usdc: string;
+  pricing_mode: string;
+  pricing_config: unknown | null;
   input_schema: unknown | null;
   output_schema: unknown | null;
   network: string;
@@ -50,6 +52,16 @@ export interface CategoryCount {
   count: number;
 }
 
+export interface ProviderRate {
+  id: string;
+  provider: string;
+  model: string;
+  input_rate_per_1k: string;
+  output_rate_per_1k: string | null;
+  unit: string;
+  updated_at: Date | null;
+}
+
 export interface DiscoverQuery {
   category?: string;
   q?: string;
@@ -72,6 +84,7 @@ export interface EndpointRepository {
   deactivate(id: string): Promise<Endpoint | null>;
   discover(query: DiscoverQuery): Promise<{ endpoints: Endpoint[]; total: number }>;
   getCategories(): Promise<CategoryCount[]>;
+  getProviderRates(): Promise<ProviderRate[]>;
 }
 
 export interface TransactionRepository {

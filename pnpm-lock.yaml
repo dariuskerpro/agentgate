@@ -109,6 +109,9 @@ importers:
 
   apps/fulfillment-api:
     dependencies:
+      '@agent-gate/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@anthropic-ai/sdk':
         specifier: ^0.39.0
         version: 0.39.0
@@ -252,6 +255,15 @@ importers:
     devDependencies:
       vitest:
         specifier: ^3.0.0
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@25.5.0)(jsdom@29.0.0(@noble/hashes@1.8.0))(tsx@4.21.0)(yaml@2.8.2)
+
+  packages/shared:
+    devDependencies:
+      typescript:
+        specifier: ^5.8.0
+        version: 5.9.3
+      vitest:
+        specifier: ^3.2.1
         version: 3.2.4(@types/debug@4.1.12)(@types/node@25.5.0)(jsdom@29.0.0(@noble/hashes@1.8.0))(tsx@4.21.0)(yaml@2.8.2)
 
 packages:

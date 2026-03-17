@@ -7,6 +7,7 @@ import { schema } from "../db/index.js";
 import type {
   Endpoint,
   CategoryCount,
+  ProviderRate,
   DiscoverQuery,
   EndpointRepository,
 } from "./types.js";
@@ -50,6 +51,8 @@ export class DrizzleEndpointRepository implements EndpointRepository {
         description: data.description,
         category: data.category,
         price_usdc: data.price_usdc,
+        pricing_mode: data.pricing_mode,
+        pricing_config: data.pricing_config,
         input_schema: data.input_schema,
         output_schema: data.output_schema,
         network: data.network,
@@ -76,6 +79,10 @@ export class DrizzleEndpointRepository implements EndpointRepository {
       values.output_schema = data.output_schema;
     if (data.network !== undefined) values.network = data.network;
     if (data.active !== undefined) values.active = data.active;
+    if (data.pricing_mode !== undefined)
+      values.pricing_mode = data.pricing_mode;
+    if (data.pricing_config !== undefined)
+      values.pricing_config = data.pricing_config;
 
     if (Object.keys(values).length === 0) {
       return this.findById(id);
@@ -159,6 +166,22 @@ export class DrizzleEndpointRepository implements EndpointRepository {
     }));
   }
 
+  async getProviderRates(): Promise<ProviderRate[]> {
+    const rows = await this.db
+      .select()
+      .from(schema.providerRates)
+      .orderBy(schema.providerRates.provider);
+    return rows.map((r) => ({
+      id: r.id,
+      provider: r.provider,
+      model: r.model,
+      input_rate_per_1k: r.input_rate_per_1k,
+      output_rate_per_1k: r.output_rate_per_1k,
+      unit: r.unit,
+      updated_at: r.updated_at,
+    }));
+  }
+
   private toEndpoint(row: typeof schema.endpoints.$inferSelect): Endpoint {
     return {
       id: row.id,
@@ -168,6 +191,8 @@ export class DrizzleEndpointRepository implements EndpointRepository {
       description: row.description,
       category: row.category,
       price_usdc: row.price_usdc,
+      pricing_mode: row.pricing_mode ?? "flat",
+      pricing_config: row.pricing_config,
       input_schema: row.input_schema,
       output_schema: row.output_schema,
       network: row.network ?? "eip155:8453",
