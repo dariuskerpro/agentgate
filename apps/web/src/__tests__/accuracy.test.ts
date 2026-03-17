@@ -83,13 +83,20 @@ describe("No fake data in public content", () => {
 describe("Pricing accuracy", () => {
   it("pricing does not reference non-existent pipeline tier", () => {
     const pricing = readComponent("pricing");
-    // No multi-step pipelines exist yet
     expect(pricing).not.toContain("audio → summary → action items");
+  });
+
+  it("pricing frames micropayments as a capability, not a limitation", () => {
+    const pricing = readComponent("pricing");
+    // Should NOT frame cheap prices as "minimum" or "cheapest"
+    expect(pricing).not.toMatch(/cheapest|minimum price|lowest/i);
+    // Should frame it as a superpower
+    expect(pricing).toMatch(/micropayment|fractions of a cent|profit/i);
   });
 
   it("pricing mentions Base & Solana (not just Base)", () => {
     const pricing = readComponent("pricing");
-    expect(pricing).toMatch(/Base\s*&\s*Solana|Base and Solana/i);
+    expect(pricing).toMatch(/Base\s*(&amp;|&)\s*Solana|Base and Solana/i);
   });
 
   it("pricing mentions dynamic/token-based pricing for AI endpoints", () => {

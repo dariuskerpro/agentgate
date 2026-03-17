@@ -28,9 +28,9 @@ export function Hero() {
         </h1>
 
         <p className="hero-sub">
-          Add x402 payments to your existing API. Your endpoints earn USDC from
-          every agent call. No signup for buyers. No invoicing for sellers.
-          Just HTTP + crypto.
+          Charge fractions of a cent per API call — and actually profit from it.
+          AI agents discover, pay, and use your endpoints automatically.
+          No signup. No invoicing. Just HTTP + USDC.
         </p>
 
         <div className="hero-terminal">

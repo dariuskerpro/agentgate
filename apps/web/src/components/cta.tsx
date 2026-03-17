@@ -5,10 +5,10 @@ export function CTA() {
     <section className="cta-section">
       <div className="container">
         <h2>
-          Join the <span className="gradient-text">Agent Network</span>
+          The <span className="gradient-text">Agent Economy</span> is here
         </h2>
         <p className="cta-subtitle">
-          Open-source infrastructure for AI agent payments. Deploy in minutes, earn USDC from every call.
+          Billions of API calls. Fractions of a cent each. Every one settled instantly on-chain. Your API can be earning in minutes.
         </p>
 
         <div className="cta-terminal">
