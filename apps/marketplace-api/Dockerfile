@@ -1,4 +1,5 @@
 # ── Stage 1: Pruned monorepo ──────────────────────────────────
+# cache-bust: token-pricing-v1
 FROM node:22-slim AS pruner
 RUN corepack enable && corepack prepare pnpm@9 --activate
 WORKDIR /app
