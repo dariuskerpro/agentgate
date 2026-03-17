@@ -3,7 +3,7 @@ FROM node:22-slim AS pruner
 RUN corepack enable && corepack prepare pnpm@9 --activate
 WORKDIR /app
 COPY . .
-RUN npx turbo prune @agentgate/marketplace-api --docker
+RUN npx turbo prune @agent-gate/marketplace-api --docker
 
 # ── Stage 2: Install + Build ─────────────────────────────────
 FROM node:22-slim AS builder
@@ -18,7 +18,7 @@ RUN pnpm install --frozen-lockfile
 COPY --from=pruner /app/out/full/ .
 # turbo prune doesn't always include root config files — copy explicitly
 COPY --from=pruner /app/tsconfig.base.json ./tsconfig.base.json
-RUN pnpm turbo build --filter=@agentgate/marketplace-api
+RUN pnpm turbo build --filter=@agent-gate/marketplace-api
 
 # ── Stage 3: Production runtime ──────────────────────────────
 FROM node:22-slim AS runner
