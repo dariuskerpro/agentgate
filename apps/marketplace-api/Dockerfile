@@ -1,9 +1,10 @@
 # ── Stage 1: Pruned monorepo ──────────────────────────────────
-# cache-bust: token-pricing-v1
 FROM node:22-slim AS pruner
 RUN corepack enable && corepack prepare pnpm@9 --activate
 WORKDIR /app
 COPY . .
+# Invalidate cache: 2026-03-16T19:30
+RUN echo "cache-bust-20260316" > /tmp/.cache-bust
 RUN npx turbo prune @agent-gate/marketplace-api --docker
 
 # ── Stage 2: Install + Build ─────────────────────────────────
