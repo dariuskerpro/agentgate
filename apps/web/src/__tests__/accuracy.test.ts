@@ -115,6 +115,22 @@ describe("Link accuracy", () => {
   });
 });
 
+describe("How It Works page accuracy", () => {
+  it("does not show unpublished npm install commands as live", () => {
+    const page = readPage("how-it-works/page.tsx");
+    // These packages aren't published to npm yet
+    expect(page).not.toContain('"npx @agent-gate/mcp"');
+    expect(page).not.toContain('"npm i @agent-gate/sdk"');
+    expect(page).not.toContain('"pip install agentgate"');
+  });
+
+  it("does not show unpublished Python import examples", () => {
+    const page = readPage("how-it-works/page.tsx");
+    expect(page).not.toContain("from agentgate.langchain_tool");
+    expect(page).not.toContain("AgentGateDiscoverTool()");
+  });
+});
+
 describe("API endpoint accuracy", () => {
   it("all curl examples use agentgate.online (not text2ai.com)", () => {
     const components = [

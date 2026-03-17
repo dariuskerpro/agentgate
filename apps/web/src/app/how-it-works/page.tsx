@@ -553,24 +553,34 @@ curl https://api.agentgate.online/v1/discover/categories`}
             >
               {[
                 {
+                  name: "CLI",
+                  desc: "Init, configure, and register endpoints",
+                  code: "npx @dkerpal/agent-gate init",
+                  live: true,
+                },
+                {
+                  name: "Discovery API",
+                  desc: "Browse endpoints via REST",
+                  code: "curl api.agentgate.online/v1/discover",
+                  live: true,
+                },
+                {
                   name: "MCP Server",
                   desc: "Claude Code, Cursor, any MCP client",
-                  code: "npx @agent-gate/mcp",
+                  code: "Coming Soon",
+                  live: false,
                 },
                 {
                   name: "TypeScript SDK",
-                  desc: "Full client with 402 handling",
-                  code: "npm i @agent-gate/sdk",
+                  desc: "Full client with x402 payment handling",
+                  code: "Coming Soon",
+                  live: false,
                 },
                 {
                   name: "Python SDK",
                   desc: "Client + LangChain + CrewAI tools",
-                  code: "pip install agentgate",
-                },
-                {
-                  name: "LangChain Tools",
-                  desc: "Drop-in tool wrappers",
-                  code: "AgentGateDiscoverTool()",
+                  code: "Coming Soon",
+                  live: false,
                 },
               ].map((item) => (
                 <div
@@ -580,6 +590,7 @@ curl https://api.agentgate.online/v1/discover/categories`}
                     background: "var(--color-card-bg)",
                     border: "1px solid var(--color-card-border)",
                     borderRadius: "0.75rem",
+                    opacity: item.live ? 1 : 0.6,
                   }}
                 >
                   <div
@@ -587,9 +598,15 @@ curl https://api.agentgate.online/v1/discover/categories`}
                       fontWeight: 700,
                       fontSize: "0.9375rem",
                       marginBottom: "0.25rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
                     }}
                   >
                     {item.name}
+                    {!item.live && (
+                      <span style={{ fontSize: "0.625rem", color: "var(--color-violet)", background: "rgba(124, 58, 237, 0.15)", padding: "0.1rem 0.4rem", borderRadius: "3px", fontFamily: "var(--font-mono)", fontWeight: 600 }}>Soon</span>
+                    )}
                   </div>
                   <div
                     style={{
@@ -604,8 +621,8 @@ curl https://api.agentgate.online/v1/discover/categories`}
                     style={{
                       fontFamily: "var(--font-mono)",
                       fontSize: "0.75rem",
-                      color: "var(--color-violet)",
-                      background: "rgba(124, 58, 237, 0.1)",
+                      color: item.live ? "var(--color-violet)" : "var(--color-text-dim)",
+                      background: item.live ? "rgba(124, 58, 237, 0.1)" : "transparent",
                       padding: "0.25rem 0.5rem",
                       borderRadius: "4px",
                     }}
@@ -617,16 +634,17 @@ curl https://api.agentgate.online/v1/discover/categories`}
             </div>
 
             <CodeBox
-              title="langchain — discover and call in 2 lines"
-              code={`from agentgate.langchain_tool import AgentGateDiscoverTool, AgentGateCallTool
+              title="discover and call — it's just HTTP"
+              code={`# 1. Discover endpoints
+curl https://api.agentgate.online/v1/discover?category=code
 
-# Add to your agent's toolkit
-tools = [AgentGateDiscoverTool(), AgentGateCallTool()]
+# 2. Call an endpoint (returns 402 — needs x402 payment)
+curl -X POST https://fulfill.agentgate.online/v1/email-validate \\
+  -H "Content-Type: application/json" \\
+  -d '{"email": "test@gmail.com"}'
 
-# Agent autonomously:
-# 1. Discovers "I need transcription" → finds /v1/transcribe
-# 2. Calls it with payment → gets transcript back
-# No hardcoded URLs. No API keys. No human in the loop.`}
+# Agent's x402 client handles payment automatically.
+# No API keys. No signup. Just HTTP + USDC.`}
             />
 
             <Callout
