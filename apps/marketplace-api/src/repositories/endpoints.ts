@@ -38,8 +38,10 @@ export class DrizzleEndpointRepository implements EndpointRepository {
   }
 
   async create(
-    data: Omit<Endpoint, "id" | "created_at" | "active"> & {
+    data: Omit<Endpoint, "id" | "created_at" | "active" | "pricing_mode" | "pricing_config"> & {
       active?: boolean;
+      pricing_mode?: string;
+      pricing_config?: unknown | null;
     },
   ): Promise<Endpoint> {
     const rows = await this.db
@@ -51,8 +53,8 @@ export class DrizzleEndpointRepository implements EndpointRepository {
         description: data.description,
         category: data.category,
         price_usdc: data.price_usdc,
-        pricing_mode: data.pricing_mode,
-        pricing_config: data.pricing_config,
+        pricing_mode: data.pricing_mode ?? "flat",
+        pricing_config: data.pricing_config ?? null,
         input_schema: data.input_schema,
         output_schema: data.output_schema,
         network: data.network,

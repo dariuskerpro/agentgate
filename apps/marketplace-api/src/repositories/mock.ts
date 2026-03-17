@@ -55,7 +55,7 @@ export class MockEndpointRepository implements EndpointRepository {
     return this.endpoints.filter((e) => e.seller_id === sellerId && e.active);
   }
 
-  async create(data: Omit<Endpoint, "id" | "created_at" | "active"> & { active?: boolean }): Promise<Endpoint> {
+  async create(data: Omit<Endpoint, "id" | "created_at" | "active" | "pricing_mode" | "pricing_config"> & { active?: boolean; pricing_mode?: string; pricing_config?: unknown | null }): Promise<Endpoint> {
     const ep: Endpoint = {
       id: uuid(),
       ...data,

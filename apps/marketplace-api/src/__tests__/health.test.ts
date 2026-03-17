@@ -18,6 +18,8 @@ function makeEndpoint(overrides: Partial<Endpoint> = {}): Endpoint {
     description: "Test endpoint",
     category: "data",
     price_usdc: "0.001",
+    pricing_mode: "flat",
+    pricing_config: null,
     input_schema: null,
     output_schema: null,
     network: "eip155:8453",

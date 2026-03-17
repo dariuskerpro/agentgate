@@ -79,7 +79,7 @@ export interface SellerRepository {
 export interface EndpointRepository {
   findById(id: string): Promise<Endpoint | null>;
   findBySeller(sellerId: string): Promise<Endpoint[]>;
-  create(data: Omit<Endpoint, "id" | "created_at" | "active"> & { active?: boolean }): Promise<Endpoint>;
+  create(data: Omit<Endpoint, "id" | "created_at" | "active" | "pricing_mode" | "pricing_config"> & { active?: boolean; pricing_mode?: string; pricing_config?: unknown | null }): Promise<Endpoint>;
   update(id: string, data: Partial<Omit<Endpoint, "id" | "created_at" | "seller_id">>): Promise<Endpoint | null>;
   deactivate(id: string): Promise<Endpoint | null>;
   discover(query: DiscoverQuery): Promise<{ endpoints: Endpoint[]; total: number }>;

@@ -30,6 +30,8 @@ export function endpointRoutes(repos: Repositories) {
       description: body.description ?? null,
       category: body.category,
       price_usdc: String(body.price_usdc),
+      pricing_mode: body.pricing_mode ?? "flat",
+      pricing_config: body.pricing_config ?? null,
       input_schema: body.input_schema ?? null,
       output_schema: body.output_schema ?? null,
       network: body.network ?? "eip155:8453",
