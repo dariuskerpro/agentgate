@@ -59,6 +59,18 @@ export function Navbar() {
           }}
         >
           <a
+            href="/how-it-works"
+            style={{
+              color: "var(--color-text-muted)",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              textDecoration: "none",
+              transition: "color 0.15s",
+            }}
+          >
+            How It Works
+          </a>
+          <a
             href="/marketplace"
             style={{
               color: "var(--color-text-muted)",
