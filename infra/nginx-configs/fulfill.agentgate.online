@@ -1,0 +1,31 @@
+server {
+    server_name fulfill.agentgate.online;
+
+    location / {
+        proxy_pass https://fulfillment-api-production.up.railway.app;
+        proxy_set_header Host fulfillment-api-production.up.railway.app;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_ssl_server_name on;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/agentgate.online/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/agentgate.online/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = fulfill.agentgate.online) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name fulfill.agentgate.online;
+    return 404; # managed by Certbot
+
+
+}

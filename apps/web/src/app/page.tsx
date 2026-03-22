@@ -10,6 +10,7 @@ import { Quickstart } from "../components/quickstart";
 import { Pricing } from "../components/pricing";
 import { CTA } from "../components/cta";
 import { Footer } from "../components/footer";
+import { FeedbackButton } from "../components/feedback-button";
 
 export default function LandingPage() {
   return (
@@ -25,6 +26,7 @@ export default function LandingPage() {
       <Pricing />
       <CTA />
       <Footer />
+      <FeedbackButton />
     </main>
   );
 }

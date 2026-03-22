@@ -12,13 +12,7 @@ export function Pricing() {
           Every transaction settles instantly in USDC on Base &amp; Solana.
         </p>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "1.5rem",
-          maxWidth: "1000px",
-          margin: "3rem auto 0",
-        }}>
+        <div className="pricing-grid">
           {/* Micropayment hero stat */}
           <div style={{
             gridColumn: "1 / -1",

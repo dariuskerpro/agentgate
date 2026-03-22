@@ -11,13 +11,7 @@ export function Vision() {
           The agent economy needs infrastructure. Here&apos;s the gap we fill.
         </p>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "1.5rem",
-          maxWidth: "1000px",
-          margin: "3rem auto 0",
-        }}>
+        <div className="vision-grid">
           {/* Today */}
           <div style={{
             padding: "2rem 1.5rem",
