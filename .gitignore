@@ -14,3 +14,12 @@ apps/web/out/
 
 __pycache__/
 *.pyc
+
+# Internal docs (not for public)
+ORACLE-ROADMAP.md
+ORACLE-BRIEF.md
+blog/
+docs/archive/
+docs/blog-post-draft.md
+ORACLE-ROADMAP.md
+workspace-artifacts/

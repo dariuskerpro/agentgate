@@ -145,7 +145,7 @@ Current cert expires: **2026-06-18** (auto-renew enabled).
 
 **Symptoms:** Domain doesn't resolve.
 
-- DNS is managed at the registrar (the team controls this)
+- DNS is managed at the registrar (admin controls this)
 - Current A records: agentgate.online, api.agentgate.online, fulfill.agentgate.online → 134.199.224.98
 - If we change droplet IP, all three A records need updating
 
@@ -219,7 +219,7 @@ curl -sf https://api.agentgate.online/health > /dev/null
 # Check fulfillment health
 curl -sf https://fulfill.agentgate.online/health > /dev/null
 ```
-If any fail → alert the team on Telegram.
+If any fail → alert the team.
 
 ### Option B: UptimeRobot (Free Tier)
 - 50 free monitors, 5-min intervals
@@ -247,12 +247,12 @@ No $80/mo surprises. Everything is either free tier or the minimum viable paid t
 
 ## Key Contacts & Access
 
-- **Droplet SSH:** `ssh root@134.199.224.98` (key: deploy-key)
+- **Droplet SSH:** See deploy docs (key-based auth)
 - **Railway dashboard:** railway.app (dkerpalprofessional@gmail.com)
 - **Supabase dashboard:** supabase.com (remotebb email)
-- **DNS/Domain:** the team manages at registrar
+- **DNS/Domain:** Managed at registrar
 - **Secrets:** All in macOS Keychain under account `agentgate`
-- **Source code:** `~/projects/agentgate/` → GitHub `dariuskerpro/agentgate`
+- **Source code:** This repository
 
 ---
 

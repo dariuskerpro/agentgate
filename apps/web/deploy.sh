@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Deploy Next.js static export to AgentGate dedicated droplet
-# Usage: ./deploy.sh
-# Server: 134.199.224.98 (DO droplet "agentgate", SFO3, $6/mo)
-# ⚠️ This is a DEDICATED AgentGate server — NOT the RemoteBB Plesk box
+# Deploy Next.js static export to AgentGate server
+# Usage: REMOTE=user@host ./deploy.sh
+# Requires: SSH key-based auth to your server
 
-REMOTE="root@134.199.224.98"
+REMOTE="${REMOTE:?Set REMOTE=user@host before running}"
 WEBROOT="/var/www/agentgate.online"
 LOCAL_OUT="$(dirname "$0")/out"
 
