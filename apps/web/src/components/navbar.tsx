@@ -14,11 +14,8 @@ export function Navbar() {
           <a href="/how-it-works" className="navbar-link">Network</a>
           <a href="/marketplace" className="navbar-link">Agents</a>
           <a href="/docs" className="navbar-link">Docs</a>
-          <a href="https://agentgate.remotebb.com/journal.html" className="navbar-link" target="_blank">Journal</a>
-          <span className="navbar-link navbar-link--dim">
-            GitHub
-            <span className="navbar-soon-badge">Soon</span>
-          </span>
+          <a href="/journal" className="navbar-link">Journal</a>
+          <a href="https://github.com/dariuskerpro/agentgate" className="navbar-link" target="_blank">GitHub</a>
           <a href="/docs/getting-started" className="navbar-cta">Get Started</a>
         </div>
       </div>
