@@ -1,6 +1,6 @@
 # AgentGate Python SDK
 
-Discover and call pay-per-call AI APIs from the [AgentGate](https://agentgate.ai) marketplace.
+Discover and call pay-per-call AI APIs from the [AgentGate](https://agentgate.online) marketplace.
 
 ## Install
 
@@ -65,4 +65,4 @@ tools = [discover, call]
 
 ## Docs
 
-Full documentation at [agentgate.ai/docs](https://agentgate.ai/docs)
+Full documentation at [agentgate.online/docs](https://agentgate.online/docs)

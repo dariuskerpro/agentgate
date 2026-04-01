@@ -34,6 +34,7 @@ import { paymentMiddleware } from '@agent-gate/middleware/hono';
 
 const app = new Hono();
 
+// EVM wallet (Base) or Solana wallet — both accept USDC
 app.use('/api/translate', paymentMiddleware({
   price: '$0.02',
   wallet: process.env.MY_WALLET,

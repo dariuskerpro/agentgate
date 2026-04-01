@@ -41,7 +41,7 @@ AgentGate has four main components:
 | Marketplace API | `api.agentgate.online` | Endpoint discovery, seller registration, analytics |
 | Fulfillment API | `fulfill.agentgate.online` | Hosts the actual endpoints behind x402 paywalls |
 | Facilitator | `x402.org/facilitator` | Verifies and settles USDC payments on-chain |
-| Web | `agentgate.ai` | Landing page and seller dashboard |
+| Web | `agentgate.online` | Landing page and seller dashboard |
 
 ## Key concepts
 

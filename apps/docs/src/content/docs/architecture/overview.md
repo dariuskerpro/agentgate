@@ -76,7 +76,7 @@ Verifies payments on-chain. When a buyer submits an `X-402-Payment` header, the 
 3. Confirms the USDC transfer on-chain (Base or Solana)
 4. Returns verification result to the fulfillment API
 
-### Web (`agentgate.ai`)
+### Web (`agentgate.online`)
 
 Landing page and seller onboarding. Built with Next.js.
 

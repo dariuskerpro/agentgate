@@ -16,7 +16,7 @@ All middleware variants accept the same core config:
 
 ```typescript
 interface AgentGateConfig {
-  /** Ethereum wallet address to receive USDC payments */
+  /** Wallet address to receive USDC payments (EVM address or Solana pubkey) */
   wallet: string;
 
   /** Route-level pricing and metadata */
@@ -25,14 +25,18 @@ interface AgentGateConfig {
   /** Optional: marketplace API key for analytics */
   marketplace?: {
     apiKey: string;
-    url?: string; // defaults to https://api.agentgate.ai
+    url?: string; // defaults to https://api.agentgate.online
   };
 
   /** Optional: x402 facilitator URL */
-  facilitator?: string; // defaults to Coinbase CDP
+  facilitator?: string; // defaults to https://facilitator.agentgate.online
 
   /** Optional: network identifier */
   network?: string; // defaults to eip155:8453 (Base mainnet)
+  // Supported values:
+  //   eip155:8453     — Base mainnet (EVM)
+  //   eip155:84532    — Base Sepolia testnet (EVM)
+  //   solana:mainnet  — Solana mainnet
 }
 
 interface RouteConfig {
@@ -55,6 +59,8 @@ interface RouteConfig {
 
 ## Express
 
+**EVM (Base) example:**
+
 ```typescript
 import { agentgate } from '@agent-gate/middleware/express';
 // or
@@ -63,7 +69,8 @@ import { agentgate } from '@agent-gate/middleware';
 const app = express();
 
 app.use(agentgate({
-  wallet: '0x...',
+  wallet: '0x4CEdAbe86311bF6936c0197786c218D9d2D0748B',
+  network: 'eip155:8453',
   routes: {
     'GET /api/weather': {
       price: '$0.001',
@@ -72,9 +79,20 @@ app.use(agentgate({
       input: { query: 'city name (string)' },
       output: { example: { temp: 72, conditions: 'sunny' } },
     },
-    'POST /api/scrape': {
-      price: '$0.005',
-      description: 'Scrape and parse any URL',
+  },
+}));
+```
+
+**Solana example:**
+
+```typescript
+app.use(agentgate({
+  wallet: '2mUNgWRnsca3vJJL4Q7ZAUTzwGXB4LftvUScdnGAZSdt',
+  network: 'solana:mainnet',
+  routes: {
+    'GET /api/weather': {
+      price: '$0.001',
+      description: 'Weather data for any city',
       category: 'data',
     },
   },
@@ -144,7 +162,7 @@ Both are interpreted as USDC amounts. Invalid or negative prices are rejected at
 
 ## Error Handling
 
-- If no payment header: returns `402 Payment Required` with pricing info
+- If no payment header: returns `402 Payment Required` with a `payment-required` header containing pricing info
 - If invalid payment: returns `402` with error details
 - If marketplace API is unreachable: middleware continues to process payments (graceful degradation)
 - Analytics failures never block the payment flow
@@ -153,6 +171,6 @@ Both are interpreted as USDC amounts. Invalid or negative prices are rejected at
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `AGENTGATE_MARKETPLACE_URL` | Marketplace API base URL | `https://api.agentgate.ai` |
-| `AGENTGATE_FACILITATOR_URL` | x402 facilitator URL | Coinbase CDP URL |
+| `AGENTGATE_MARKETPLACE_URL` | Marketplace API base URL | `https://api.agentgate.online` |
+| `AGENTGATE_FACILITATOR_URL` | x402 facilitator URL | `https://facilitator.agentgate.online` |
 | `AGENTGATE_NETWORK` | Network identifier | `eip155:8453` |

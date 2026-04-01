@@ -2,7 +2,7 @@
 
 The Discovery API lets AI agents search, browse, and find monetized API endpoints on the AgentGate marketplace.
 
-**Base URL:** `https://api.agentgate.ai`
+**Base URL:** `https://api.agentgate.online`
 
 All discovery endpoints are **public** — no authentication required. Rate limited to 100 requests/minute per IP.
 
@@ -27,7 +27,7 @@ Search and browse all active endpoints.
 **Request:**
 
 ```bash
-curl "https://api.agentgate.ai/v1/discover?category=data&q=weather&sort=quality&limit=10"
+curl "https://api.agentgate.online/v1/discover?category=data&q=weather&sort=quality&limit=10"
 ```
 
 **Response:**
@@ -37,14 +37,14 @@ curl "https://api.agentgate.ai/v1/discover?category=data&q=weather&sort=quality&
   "endpoints": [
     {
       "id": "uuid",
-      "url": "https://api.example.com/weather",
-      "method": "GET",
-      "description": "Real-time weather data for any city worldwide",
+      "url": "https://fulfill.agentgate.online/v1/email-validate",
+      "method": "POST",
+      "description": "Email → MX check, disposable detection, typo suggestions",
       "category": "data",
-      "price_usdc": "0.001",
-      "network": "eip155:8453",
+      "price_usdc": "0.0005",
+      "networks": ["eip155:8453", "solana:mainnet"],
       "seller": {
-        "display_name": "WeatherCo",
+        "display_name": "AgentGate",
         "verified": true
       },
       "health": {
@@ -52,8 +52,8 @@ curl "https://api.agentgate.ai/v1/discover?category=data&q=weather&sort=quality&
         "avg_latency_ms": 142,
         "total_transactions": 14892
       },
-      "input_schema": { "query": "city name (string)" },
-      "output_schema": { "example": { "temp": 72, "conditions": "sunny" } }
+      "input_schema": { "email": "string" },
+      "output_schema": { "example": { "valid": true, "mx": true } }
     }
   ],
   "total": 47,
@@ -70,7 +70,7 @@ Get full details for a specific endpoint, including health metrics.
 **Request:**
 
 ```bash
-curl "https://api.agentgate.ai/v1/discover/550e8400-e29b-41d4-a716-446655440000"
+curl "https://api.agentgate.online/v1/discover/550e8400-e29b-41d4-a716-446655440000"
 ```
 
 **Response:**
@@ -78,14 +78,14 @@ curl "https://api.agentgate.ai/v1/discover/550e8400-e29b-41d4-a716-446655440000"
 ```json
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
-  "url": "https://api.example.com/weather",
-  "method": "GET",
-  "description": "Real-time weather data for any city worldwide",
+  "url": "https://fulfill.agentgate.online/v1/email-validate",
+  "method": "POST",
+  "description": "Email → MX check, disposable detection, typo suggestions",
   "category": "data",
-  "price_usdc": "0.001",
-  "network": "eip155:8453",
+  "price_usdc": "0.0005",
+  "networks": ["eip155:8453", "solana:mainnet"],
   "seller": {
-    "display_name": "WeatherCo",
+    "display_name": "AgentGate",
     "verified": true
   },
   "health": {
@@ -93,8 +93,8 @@ curl "https://api.agentgate.ai/v1/discover/550e8400-e29b-41d4-a716-446655440000"
     "avg_latency_ms": 142,
     "total_transactions": 14892
   },
-  "input_schema": { "query": "city name (string)" },
-  "output_schema": { "example": { "temp": 72, "conditions": "sunny" } }
+  "input_schema": { "email": "string" },
+  "output_schema": { "example": { "valid": true, "mx": true } }
 }
 ```
 
@@ -107,7 +107,7 @@ List all categories with endpoint counts.
 **Request:**
 
 ```bash
-curl "https://api.agentgate.ai/v1/discover/categories"
+curl "https://api.agentgate.online/v1/discover/categories"
 ```
 
 **Response:**
@@ -138,6 +138,14 @@ Register a new seller.
 ```json
 {
   "wallet_address": "0x1234567890abcdef1234567890abcdef12345678"
+}
+```
+
+Solana wallets are also accepted:
+
+```json
+{
+  "wallet_address": "2mUNgWRnsca3vJJL4Q7ZAUTzwGXB4LftvUScdnGAZSdt"
 }
 ```
 
@@ -224,6 +232,7 @@ Record a transaction event (called by middleware on settled payments).
   "buyer_wallet": "0x...",
   "amount_usdc": "0.001",
   "tx_hash": "0x...",
+  "network": "eip155:8453",
   "latency_ms": 142
 }
 ```
@@ -233,9 +242,9 @@ Record a transaction event (called by middleware on settled payments).
 ## Using the Discovery API (Agent Example)
 
 ```typescript
-// 1. Search for weather APIs
+// 1. Search for email validation APIs
 const discovery = await fetch(
-  "https://api.agentgate.ai/v1/discover?category=data&q=weather"
+  "https://api.agentgate.online/v1/discover?category=data&q=email"
 );
 const { endpoints } = await discovery.json();
 
@@ -244,10 +253,24 @@ const best = endpoints[0];
 console.log(`Using ${best.url} at ${best.price_usdc} USDC/request`);
 
 // 3. Make a paid request via x402
+// First call returns 402 with payment-required header
+const initial = await fetch(best.url, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email: 'test@gmail.com' }),
+});
+
+// Read the payment-required header, sign payment, retry with PAYMENT-SIGNATURE
+const paymentInfo = initial.headers.get('payment-required');
+const signature = await signPayment(paymentInfo); // your signing logic
+
 const response = await fetch(best.url, {
+  method: 'POST',
   headers: {
-    "X-402-Payment": constructPaymentHeader(best.price_usdc, best.network),
+    'Content-Type': 'application/json',
+    'PAYMENT-SIGNATURE': signature,
   },
+  body: JSON.stringify({ email: 'test@gmail.com' }),
 });
 
 const data = await response.json();
