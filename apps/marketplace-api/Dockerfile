@@ -1,6 +1,6 @@
 # ── Stage 1: Pruned monorepo ──────────────────────────────────
 FROM node:22-slim AS pruner
-RUN corepack enable && corepack prepare pnpm@9 --activate
+RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
 WORKDIR /app
 COPY . .
 # Invalidate cache: 2026-03-16T19:30
@@ -9,7 +9,7 @@ RUN npx turbo prune @agent-gate/marketplace-api --docker
 
 # ── Stage 2: Install + Build ─────────────────────────────────
 FROM node:22-slim AS builder
-RUN corepack enable && corepack prepare pnpm@9 --activate
+RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
 WORKDIR /app
 
 # Install dependencies (lockfile + pruned package.jsons only → cached layer)
@@ -24,7 +24,7 @@ RUN pnpm turbo build --filter=@agent-gate/marketplace-api
 
 # ── Stage 3: Production runtime ──────────────────────────────
 FROM node:22-slim AS runner
-RUN corepack enable && corepack prepare pnpm@9 --activate
+RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
 WORKDIR /app
 
 ENV NODE_ENV=production
